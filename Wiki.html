@@ -96,7 +96,7 @@ body{
 #P2, #P2 .Back, #P2 .Next					{		background-color: var(--VIOLET_F);	}
 #P3, #P3 .Back, #P3 .Next					{		background-color: var(--VIOLET_C);	}
 #P4, #P4 .Back, #P4 .Next					{		background-color: var(--VIOLET_L);	}
-#Conclude, #Conclude .Back, #Conclude .Next	{		background-color: var(--BLEU_C);	}
+#Conclusion, #Conclusion .Back, #Conclusion .Next	{		background-color: var(--BLEU_C);	}
 
 #Present .image{
 	top: 0;
@@ -108,6 +108,17 @@ body{
 	background-repeat: no-repeat;
 
 	box-shadow: inset 0 -5vh 10vh 0 black;
+}
+#Present .image div{
+	font-size: 3vw;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 30vw;
+	height: 44vh;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	padding-top: 4vh;
+
 }
 #Intro .image{
 	float: left;
@@ -132,7 +143,7 @@ body{
 	overflow: auto;
 	padding-bottom: 10vh;
 }
-#P3 .text{
+#P1 .text, #P2 .text, #P3 .text, #P4 .text{
 	width: 80vw;
 	height: 76vh;
 	overflow: auto;
@@ -155,6 +166,24 @@ body{
 
 	transform-origin: 100% 100%;
 	transform: rotate(-90deg);
+}
+.text .image{
+	margin-left: 3.5vw;
+	box-shadow: 0 0 0 0.5vw rgba(0, 0, 0, 0.5);
+	position: relative;
+
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	color: transparent;
+	text-align: center;
+	font-size: 30px;
+	transition-duration:0.2s;
+}
+.text .image:hover{
+	background-size: 110% 110%;
+	color: white;
+	text-shadow: 0 0 3px black;
 }
 h1{
 	font-weight: normal;
@@ -198,13 +227,21 @@ p{
 			<a href="#P2">Part 2</a>
 			<a href="#P3">Part 3</a>
 			<a href="#P4">Part 4</a>
-			<a href="#Conclude">Conclusion & Links</a>
+			<a href="#Conclusion">Conclusion & Links</a>
 		</div>
 
 		<!-- Pages -->
 		<div id="Present" class="Page">
 			<!-- src= http://wallpaper-gallery.net/single/i-robot-wallpaper/i-robot-wallpaper-18.html -->
-			<div class="image"></div>
+			<div class="image">
+				<div>
+					WIKI BY
+					<br>REYSS Alexandre
+					<br>VERGNES Nicolas
+					<br>ZISSLER Luc Michel
+					<br>MISSLIN Quentin
+				</div>
+			</div>
 			<h1>NEW TECHNOLOGIES</h1>
 			<h2>Will the new technologies replace the human jobs in the future ?</h2>
 			<a class="Next" href="#Intro">►</a>
@@ -212,7 +249,7 @@ p{
 		<div id="Intro" class="Page">
 			<!-- src=https://gcn.com/Articles/2016/01/28/~/media/GIG/GCN/Redesign/Articles/2016/January/AI.png -->
 			<div class="image"></div>
-			<div class="text">
+			<div class="text" data-by="Writed by ALL">
 				<h3>Introduction</h3>
 				<p> In the industrial age, many technologies replaced the human. 
 					Especially in large industries where chain work and Taylorization 
@@ -238,12 +275,24 @@ p{
 			<a class="Next" href="#P1">►</a>
 		</div>
 		<div id="P1" class="Page">
-			Partie 1 
+			<div class="text" data-by="Writed by VERGNES Nicolas">
+				<h3>
+					Part I
+				</h3><p>
+					Content
+				</p>
+			</div>
 			<a class="Back" href="#Intro">◄</a>
 			<a class="Next" href="#P2">►</a>
 		</div>
 		<div id="P2" class="Page">
-			Partie 2
+			<div class="text" data-by="Writed by REYSS Alexandre">
+				<h3>
+					Part II
+				</h3><p>
+					Content
+				</p>
+			</div>
 			<a class="Back" href="#P1">◄</a>
 			<a class="Next" href="#P3">►</a>
 		</div>
@@ -260,14 +309,22 @@ p{
 					efficient and much faster in our industries.  So we can 
 					wonder if humans will keep their jobs in the future 
 					(near or distant).....]
-				</p><br><p>
+				</p><br>
+				<div class="image" style="background-image:
+					url('http://libredagir.fr/wp-content/uploads/2015/02/TECHNO-1-810x579.jpg'); 
+					width: calc(810px / 3);
+					height:calc(579px / 3); 
+					
+					float:left;" />http://libredagir.fr/wp-content/uploads/2015/02/TECHNO-1-810x579.jpg
+				</div>
+				<p>
 					Also, is there any limit to artificial intelligence ? Since 
 					his beginnings, AI is subject to a non-stop progress, getting 
 					more and more closer to humans. In certain circumstances, IA 
 					is almost smarter than us. For example, there are 
 					“super-intelligences”, considered as already possessing an intelligence 
 					far surpassing our minds.[1]
-				</p><br><p>
+				</p><br style="clear:both"><br><p>
 					Of course the question of AIs limits hasn’t a precise answer nowadays, 
 					and is part of a lot of discussions. But we could have a little idea of 
 					what the future holds. [+ Add facts]. AI, may having the possibility to 
@@ -291,12 +348,29 @@ p{
 			<a class="Next" href="#P4">►</a>
 		</div>
 		<div id="P4" class="Page">
-			Partie 4
+			<div class="text" data-by="Writed by MISSLIN Quentin">
+				<h3>
+					Part IV
+				</h3><p>
+					Content
+				</p>
+			</div>
 			<a class="Back" href="#P3">◄</a>
-			<a class="Next" href="#Conclude">►</a>
+			<a class="Next" href="#Conclusion">►</a>
 		</div>
-		<div id="Conclude" class="Page">
-			Conclusion + Sources
+		<div id="Conclusion" class="Page">
+			<div class="text" data-by="Writed by ALL">
+				<h3>
+					Conclusion
+				</h3><p>
+					Content
+				</p>
+				<h3>
+					Links
+				</h3><p>
+					Content
+				</p>
+			</div>
 			<a class="Back" href="#P4">◄</a>
 		</div>
 	</body>
