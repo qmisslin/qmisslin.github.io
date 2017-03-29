@@ -128,10 +128,28 @@ body{
 	padding-bottom: 10vh;
 }
 #P3 .text{
-	width: 60vw;
+	width: 80vw;
 	height: 76vh;
 	overflow: auto;
 	padding-bottom: 10vh;
+	margin-left: 10vw;
+	margin-right: 10vw;
+}
+.text:after{
+	position: absolute;
+	content: attr(data-by);
+	top:0;
+	right: 0;
+
+	padding: 0.7vw;
+	margin: 0;
+	border-radius: 1vw 1vw 0 0;
+	
+	color: white;
+	background-color: black;
+
+	transform-origin: 100% 100%;
+	transform: rotate(-90deg);
 }
 h1{
 	font-weight: normal;
@@ -225,7 +243,8 @@ p{
 			<a class="Next" href="#P3">►</a>
 		</div>
 		<div id="P3" class="Page">
-			<div class="text">
+			
+			<div class="text" data-by="Writed by ZISSLER Luc Michel">
 				<h3>
 					Part III : If everything is going to be automated, 
 					which jobs will remain in the future ? 
