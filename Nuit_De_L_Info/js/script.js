@@ -15,13 +15,13 @@ var renderer = new THREE.WebGLRenderer({
 renderer.setClearColor(new THREE.Color(0x00ff00), 1);﻿
 renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(
-	window.innerWidth - BORDER_SIZE*2, 
+	window.innerWidth - BORDER_SIZE*2,
 	window.innerHeight - BORDER_SIZE*2
 );
 
 var camera = new THREE.PerspectiveCamera(
 	35, // Vertical field of view
-	(window.innerWidth - BORDER_SIZE*2) / 
+	(window.innerWidth - BORDER_SIZE*2) /
 	(window.innerHeight - BORDER_SIZE*2),
 	0.1,
 	3000
@@ -51,7 +51,7 @@ var material = new THREE.MeshLambertMaterial(
 );
 
 // Load d'un objet 3d
-var suzi, loader = new THREE.OBJLoader(); 
+var suzi, loader = new THREE.OBJLoader();
 loader.load(
 	'./models/suzi.obj',
 	function ( obj ) {
