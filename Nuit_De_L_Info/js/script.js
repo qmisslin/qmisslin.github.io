@@ -51,7 +51,9 @@ var material = new THREE.MeshLambertMaterial(
 );
 
 // Load d'un objet 3d
-var suzi, loader = new THREE.OBJLoader();
+var suzi, panneau_poteau;
+var loader = new THREE.OBJLoader()
+var cpt = 0, cpt_max = 2;
 loader.load(
 	'./models/suzi.obj',
 	function ( obj ) {
@@ -60,7 +62,19 @@ loader.load(
 		suzi.scale.set( 100, 100, 100 );
 
 		scene.add( suzi );
-		requestAnimationFrame(update);
+		if(++cpt==cpt_max) requestAnimationFrame(update);
+	}
+);
+
+loader.load(
+	'./models/panneau_poteau.obj',
+	function ( obj ) {
+		panneau_poteau = obj;
+		panneau_poteau.position.set(0,0,-1000);
+		panneau_poteau.scale.set( 100, 100, 100 );
+
+		scene.add( panneau_poteau );
+		if(++cpt==cpt_max) requestAnimationFrame(update);
 	}
 );
 
@@ -78,7 +92,7 @@ function update(){
 	//delta += 0.1;
 	// geometry.vertices[0].x = -25 + Math.sin(delta) * 50;
 	// geometry.verticesNeedUpdate = true;
-	suzi.rotation.y += delta;
+	panneau_poteau.rotation.y += delta;
 	renderer.render(scene, camera);
 	requestAnimationFrame(update);
 }
