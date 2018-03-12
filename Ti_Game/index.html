@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Ti Game</title>
+<style type="text/css">
+body{background-color: #CF9FB8;}
+canvas{
+	margin-left: 50vw;
+	transform: translateX(-50%);
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    border: 5px solid #ddd;
+}
+canvas#game { width: 400px; height: 640px; }
+
+</style>
+</head>
+<body>
+	<canvas id='game' width='400' height='640'></canvas>
+<script type="text/javascript">
+
+var canvas = document.getElementById("game");
+var ctx = canvas.getContext("2d");
+var img = new Image();
+img.src = 'Img/background.png';
+
+img.onload = () => ctx.drawImage(img, 0, 0);
+
+
+</script>
+</body>
+</html>
