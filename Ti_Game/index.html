@@ -19,7 +19,11 @@ canvas{
     image-rendering: optimize-contrast;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
-    border: 5px solid #ddd;    
+    border: 7px solid #7D349B;
+    background-image:url("Img/Loader.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 90% auto;
 }
 canvas#game { 
 	width: auto; height: auto;
@@ -29,15 +33,65 @@ canvas#game {
 </style>
 </head>
 <body>
-	<canvas id='game' width='400' height='640'></canvas>
+	<canvas id='game' width='400' height='640'>
+		Canvas n'est pas compatible avec votre navigateur...
+	</canvas>
 <script type="text/javascript">
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
-var img = new Image();
-img.src = 'https://qmisslin.github.io/Ti_Game/Img/Background.png';
 
-img.onload = () => ctx.drawImage(img, 0, 0);
+
+
+/* Images loading */
+var nbImgLoaded = 0, nbImg = 2;
+
+var background_Img = new Image();
+var dog_Img = new Image();
+
+background_Img.onload = () => imgIsLoaded();
+dog_Img.onload = () => imgIsLoaded();
+
+background_Img.src = 'Img/Background.png'; // https://qmisslin.github.io/Ti_Game/
+dog_Img.src = 'Img/Dog.png';
+
+function imgIsLoaded(){
+	nbImgLoaded++;
+	if(nbImgLoaded == nbImg){
+		game_Loop();
+	}
+}
+
+/* Game */
+var game_Frame = 0;
+var background_Frame = 0;
+var dog_Frame = 0;
+
+var game_Speed = 100;
+var background_Speed = 25;
+var dog_Speed = 5;
+
+
+function game_Loop(){
+	window.setTimeout(function (){
+		game_Frame = (game_Frame+1)%game_Speed;
+
+		if(game_Frame%background_Speed === 0){
+			background_Frame=(background_Frame+1)%2;
+		}
+		if(game_Frame%dog_Speed === 0){
+			dog_Frame = (dog_Frame+1)%8;
+		}
+		
+
+		ctx.drawImage(background_Img, 400 * background_Frame, 0, 400, 640, 0, 0, 400, 640);
+		ctx.drawImage(dog_Img, 0,160 * dog_Frame, 160, 160, 0, 0, 160, 160);
+
+		window.requestAnimationFrame(game_Loop);
+	}, 10);
+}
+
+
 
 
 </script>
