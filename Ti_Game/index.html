@@ -10,24 +10,25 @@ body{background-color: #CF9FB8;
 	overflow: hidden;
 }
 canvas{
-	position: fixed;
-	top:50vh; left:50vw;
-	transform: translate(-50%,-50%);
     image-rendering: optimizeSpeed;
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
     image-rendering: optimize-contrast;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
-    border: 7px solid #7D349B;
+}
+canvas#game {
+	position: fixed;
+	top:50vh; left:50vw;
+	transform: translate(-50%,-50%);
+	width: auto; height: auto;
+	max-width: 90vw; max-height:90vh;
+	border: 7px solid #7D349B;
     background-image:url("Img/Loader.png");
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 90% auto;
-}
-canvas#game { 
-	width: auto; height: auto;
-	max-width: 90vw; max-height:90vh;
+    background-color: #90F8FA;
 }
 
 </style>
@@ -58,7 +59,7 @@ dog_Img.src = 'Img/Dog.png';
 function imgIsLoaded(){
 	nbImgLoaded++;
 	if(nbImgLoaded == nbImg){
-		game_Loop();
+		window.setTimeout(function (){ game_Loop()}, 0);
 	}
 }
 
@@ -70,8 +71,11 @@ var dog_Frame = 0;
 var game_Speed = 100;
 var background_Speed = 25;
 var dog_Speed = 5;
+var dog_Pos = {x:-165, y:0, d:1};
 
-
+function randomInt(min, max){
+	return Math.floor(Math.random()*(max-min))+min;
+}
 function game_Loop(){
 	window.setTimeout(function (){
 		game_Frame = (game_Frame+1)%game_Speed;
@@ -79,13 +83,21 @@ function game_Loop(){
 		if(game_Frame%background_Speed === 0){
 			background_Frame=(background_Frame+1)%2;
 		}
+
+		/* Dog animation */
 		if(game_Frame%dog_Speed === 0){
 			dog_Frame = (dog_Frame+1)%8;
+			dog_Pos.x += -(dog_Pos.d*2-1)*15;
+		}
+		if(dog_Pos.x < -160 || dog_Pos.x > 400){
+			dog_Pos.y = randomInt(200,520);//200~520
+			dog_Pos.d = (dog_Pos.d === 0)?1:0;
+			dog_Pos.x = (dog_Pos.d === 0)?-160:400;
 		}
 		
 
 		ctx.drawImage(background_Img, 400 * background_Frame, 0, 400, 640, 0, 0, 400, 640);
-		ctx.drawImage(dog_Img, 0,160 * dog_Frame, 160, 160, 0, 0, 160, 160);
+		ctx.drawImage(dog_Img, dog_Pos.d * 160,160 * dog_Frame, 160, 160, dog_Pos.x, dog_Pos.y, 160, 160);
 
 		window.requestAnimationFrame(game_Loop);
 	}, 10);
