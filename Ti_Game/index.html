@@ -153,29 +153,32 @@ function game_Loop(){
 
 function game_Event(mouse){
 	console.log(mouse);
-	document.getElementById("test").innerHTML = "Mouse("+mouse.x+","+mouse.y+")";
+	var test = document.getElementById("test")
+	var str = "Mouse2("+mouse.x+","+mouse.y+")<br>";
 	if(mouse.y > 480){
 		if(mouse.x < 65){ // Yellow button
-			console.log("yellow");
+			str+="yellow";
 			body.style.backgroundColor = "#806A24";
 
 		} else if(mouse.x < 125){ // Blue button
-			console.log("blue");
+			str+="blue";
 			body.style.backgroundColor = "#243580";
 
 		} else if(mouse.x < 185){ // Green button 
-			console.log("green");
+			str+="green";
 			body.style.backgroundColor = "#278024";
 
 		} else if(mouse.x < 240){ // Pink button
-			console.log("pink");
+			str+="pink";
 			body.style.backgroundColor = "#7A3880";
 
 		} else { // Red button 
-			console.log("red");
+			str+="red";
 			body.style.backgroundColor = "#802222";
 		}
 	}
+
+	test.innerHTML = str;
 }
 
 
