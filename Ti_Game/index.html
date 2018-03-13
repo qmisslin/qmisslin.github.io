@@ -34,7 +34,7 @@ canvas#game {
 
 </style>
 </head>
-<body>
+<body id="body" style="">
 	<p id="test">Coucou</p>
 	<canvas id='game' width='400' height='640'>
 		Canvas n'est pas compatible avec votre navigateur...
@@ -43,6 +43,7 @@ canvas#game {
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
+var body = document.getElementById('body');
 
 /* Canvas Onclick position */
 function getMousePos(canvas, evt) {
@@ -156,23 +157,23 @@ function game_Event(mouse){
 	if(mouse.y > 480){
 		if(mouse.x < 65){ // Yellow button
 			console.log("yellow");
-			document.body.style.backgroundColor = "#806A24";
+			body.style.backgroundColor = "#806A24";
 
 		} else if(mouse.x < 125){ // Blue button
 			console.log("blue");
-			document.body.style.backgroundColor = "#243580";
+			body.style.backgroundColor = "#243580";
 
 		} else if(mouse.x < 185){ // Green button 
 			console.log("green");
-			document.body.style.backgroundColor = "#278024";
+			body.style.backgroundColor = "#278024";
 
 		} else if(mouse.x < 240){ // Pink button
 			console.log("pink");
-			document.body.style.backgroundColor = "#7A3880";
+			body.style.backgroundColor = "#7A3880";
 
 		} else { // Red button 
 			console.log("red");
-			document.body.style.backgroundColor = "#802222";
+			body.style.backgroundColor = "#802222";
 		}
 	}
 }
