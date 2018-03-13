@@ -5,9 +5,10 @@
 	<title>Ti Game</title>
 <style type="text/css">
 *{padding:0; margin:0;}
-body{background-color: #CF9FB8;
+body{background-color: #7A3880;
 	height:100vh; width: 100vw;
 	overflow: hidden;
+	transition:0.5s;
 }
 canvas{
     image-rendering: optimizeSpeed;
@@ -23,12 +24,12 @@ canvas#game {
 	transform: translate(-50%,-50%);
 	width: auto; height: auto;
 	max-width: 90vw; max-height:90vh;
-	border: 7px solid #7D349B;
+	border: 7px solid #eee;
     background-image:url("Img/Loader.png");
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: 90% auto;
-    background-color: #90F8FA;
+    background-color: #423420;
 }
 
 </style>
@@ -42,44 +43,64 @@ canvas#game {
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
 
+/* Canvas Onclick position */
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
+    };
+}
+canvas.addEventListener('click', function(evt) {
+    game_Event(getMousePos(canvas, evt));
+}, false);
+
 
 
 /* Images loading */
-var nbImgLoaded = 0, nbImg = 2;
+var nbImgLoaded = 0, nbImg = 3;
 
 var background_Img = new Image();
 var dog_Img = new Image();
+var color_Img = new Image();
 
 background_Img.onload = () => imgIsLoaded();
 dog_Img.onload = () => imgIsLoaded();
+color_Img.onload = () => imgIsLoaded();
 
 background_Img.src = 'Img/Background.png'; // https://qmisslin.github.io/Ti_Game/
 dog_Img.src = 'Img/Dog.png';
+color_Img.src = 'Img/Color.png';
 
 function imgIsLoaded(){
 	nbImgLoaded++;
 	if(nbImgLoaded == nbImg){
-		window.setTimeout(function (){ game_Loop()}, 0);
+		window.setTimeout(function (){ game_Loop()}, 1000);
 	}
 }
 
 /* Game */
 var game_Frame = 0;
-var background_Frame = 0;
-var dog_Frame = 0;
-
 var game_Speed = 100;
+
+var background_Frame = 0;
 var background_Speed = 25;
+
+var dog_Frame = 0;
 var dog_Speed = 5;
 var dog_Pos = {x:-165, y:0, d:1};
+
+var color_Frame = 0;
+var color_Speed = 100;
+var color_Value = 0;
 
 function randomInt(min, max){
 	return Math.floor(Math.random()*(max-min))+min;
 }
 function game_Loop(){
 	window.setTimeout(function (){
-		game_Frame = (game_Frame+1)%game_Speed;
-
+		
+		/* Background animation */
 		if(game_Frame%background_Speed === 0){
 			background_Frame=(background_Frame+1)%2;
 		}
@@ -90,19 +111,69 @@ function game_Loop(){
 			dog_Pos.x += -(dog_Pos.d*2-1)*15;
 		}
 		if(dog_Pos.x < -160 || dog_Pos.x > 400){
-			dog_Pos.y = randomInt(200,520);//200~520
+			
 			dog_Pos.d = (dog_Pos.d === 0)?1:0;
-			dog_Pos.x = (dog_Pos.d === 0)?-160:400;
+			if(dog_Pos.d === 0){
+				dog_Pos.x = -160;
+				dog_Pos.y = randomInt(140,445);//140~445
+			} else {
+				dog_Pos.x = 400;
+				dog_Pos.y = randomInt(185,445);//200~445
+			}
 		}
-		
 
-		ctx.drawImage(background_Img, 400 * background_Frame, 0, 400, 640, 0, 0, 400, 640);
-		ctx.drawImage(dog_Img, dog_Pos.d * 160,160 * dog_Frame, 160, 160, dog_Pos.x, dog_Pos.y, 160, 160);
 
-		window.requestAnimationFrame(game_Loop);
+		/* Color print animation */
+		if(game_Frame%color_Speed === 0){
+			color_Value = randomInt(0,16);
+		}
+
+		if(dog_Pos.x > 150 && dog_Pos.y < 185){
+			console.log("game over");
+
+		} else {
+			ctx.drawImage(background_Img, 400 * background_Frame, 0, 400, 640, 0, 0, 400, 640);
+			ctx.drawImage(dog_Img, dog_Pos.d * 160,160 * dog_Frame, 160, 160, dog_Pos.x, dog_Pos.y, 160, 160);
+			ctx.clearRect(15,15,240,55);
+			
+			/* Timer range */
+			ctx.fillStyle="rgb("+(255*game_Frame/100)+","+(255-255*(game_Frame/100))+",20)";
+			ctx.fillRect(15,65,240-(240*game_Frame/100),5);
+			ctx.drawImage(color_Img, 240 * (color_Value%4), 50 * Math.floor(color_Value/4),240,50,15,15,240,50);
+
+			window.requestAnimationFrame(game_Loop);
+		}
+
+		/* Increment game frame */
+		game_Frame = (game_Frame+1)%game_Speed;
 	}, 10);
 }
 
+function game_Event(mouse){
+	console.log(mouse);
+	if(mouse.y > 480){
+		if(mouse.x < 65){ // Yellow button
+			console.log("yellow");
+			document.body.style.backgroundColor = "#806A24";
+
+		} else if(mouse.x < 125){ // Blue button
+			console.log("blue");
+			document.body.style.backgroundColor = "#243580";
+
+		} else if(mouse.x < 185){ // Green button 
+			console.log("green");
+			document.body.style.backgroundColor = "#278024";
+
+		} else if(mouse.x < 240){ // Pink button
+			console.log("pink");
+			document.body.style.backgroundColor = "#7A3880";
+
+		} else { // Red button 
+			console.log("red");
+			document.body.style.backgroundColor = "#802222";
+		}
+	}
+}
 
 
 
