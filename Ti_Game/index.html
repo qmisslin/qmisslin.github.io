@@ -35,6 +35,7 @@ canvas#game {
 </style>
 </head>
 <body>
+	<p id="test">Coucou</p>
 	<canvas id='game' width='400' height='640'>
 		Canvas n'est pas compatible avec votre navigateur...
 	</canvas>
@@ -151,6 +152,7 @@ function game_Loop(){
 
 function game_Event(mouse){
 	console.log(mouse);
+	document.getElementById("test").innerHTML = "mouse("+mouse.x+","+mouse.y+")";
 	if(mouse.y > 480){
 		if(mouse.x < 65){ // Yellow button
 			console.log("yellow");
