@@ -153,7 +153,7 @@ function game_Loop(){
 
 function game_Event(mouse){
 	console.log(mouse);
-	document.getElementById("test").innerHTML = "mouse("+mouse.x+","+mouse.y+")";
+	document.getElementById("test").innerHTML = "Mouse("+mouse.x+","+mouse.y+")";
 	if(mouse.y > 480){
 		if(mouse.x < 65){ // Yellow button
 			console.log("yellow");
