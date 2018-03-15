@@ -49,8 +49,8 @@ var body = document.getElementById('body');
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
+      x: (evt.clientX - rect.left)/canvas.offsetWidth,
+      y: (evt.clientY - rect.top)/canvas.offsetHeight
     };
 }
 canvas.addEventListener('click', function(evt) {
@@ -153,22 +153,22 @@ function game_Loop(){
 
 function game_Event(mouse){
 	console.log(mouse);
-	var test = document.getElementById("test")
+	
 	var str = "Mouse2("+mouse.x+","+mouse.y+")<br>";
-	if(mouse.y > 480){
-		if(mouse.x < 65){ // Yellow button
+	if(mouse.y > 0.87){
+		if(mouse.x < 0.18){ // Yellow button
 			str+="yellow";
 			body.style.backgroundColor = "#806A24";
 
-		} else if(mouse.x < 125){ // Blue button
+		} else if(mouse.x < 0.36){ // Blue button
 			str+="blue";
 			body.style.backgroundColor = "#243580";
 
-		} else if(mouse.x < 185){ // Green button 
+		} else if(mouse.x < 0.53){ // Green button 
 			str+="green";
 			body.style.backgroundColor = "#278024";
 
-		} else if(mouse.x < 240){ // Pink button
+		} else if(mouse.x < 0.70){ // Pink button
 			str+="pink";
 			body.style.backgroundColor = "#7A3880";
 
@@ -178,6 +178,7 @@ function game_Event(mouse){
 		}
 	}
 
+	var test = document.getElementById("test")
 	test.innerHTML = str;
 }
 
