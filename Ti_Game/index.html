@@ -9,7 +9,7 @@
 	src: url("Pixel.ttf");
 }
 *{padding:0; margin:0; font-family: Pixel, sans-serif;}
-body{background-color: #7A3880;
+body{background-color: #aaa;
 	height:100vh; width: 100vw;
 	overflow: hidden;
 	transition:0.5s;
@@ -21,6 +21,13 @@ canvas{
     image-rendering: optimize-contrast;
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
+}
+#Loader{
+	position: fixed;
+	top:50vh; left:50vw;
+	transform: translate(-50%,-50%);
+	color:#eee;
+	font-size: 32px;
 }
 canvas#game{
 	position: fixed;
@@ -35,15 +42,18 @@ canvas#game{
 </style>
 </head>
 <body id="body" style="">
+
 	<canvas id='game' width='400' height='640'>
 		Canvas n'est pas compatible avec votre navigateur...
 	</canvas>
+	<div id="Loader">Chargement...</div>
 	
 <script type="text/javascript">
 
 var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
 var body = document.getElementById('body');
+var loader = document.getElementById('Loader');
 
 /* Canvas Onclick position */
 function getMousePos(canvas, evt) {
@@ -53,36 +63,40 @@ function getMousePos(canvas, evt) {
       y: (evt.clientY - rect.top)/canvas.offsetHeight
     };
 }
-canvas.addEventListener('click', function(evt) {
-    game_Event(getMousePos(canvas, evt));
-}, false);
 
 /* Images loading */
-var nbImgLoaded = 0, nbImg = 5;
+var nbImgLoaded = 0, nbImg = 6;
 
 var background_Img = new Image();
 var dog_Img = new Image();
 var color_Img = new Image();
 var goDog_Img = new Image();
 var rerun_Img = new Image();
+var dogPlayButton_Img = new Image();
 
 background_Img.onload = () => imgIsLoaded();
 dog_Img.onload = () => imgIsLoaded();
 color_Img.onload = () => imgIsLoaded();
 goDog_Img.onload = () => imgIsLoaded();
 rerun_Img.onload = () => imgIsLoaded();
+dogPlayButton_Img.onload = () => imgIsLoaded();
 
 background_Img.src = 'Img/Background.png'; // https://qmisslin.github.io/Ti_Game/
 dog_Img.src = 'Img/Dog.png';
 color_Img.src = 'Img/Color.png';
 goDog_Img.src = 'Img/GameOver_Dog.png';
 rerun_Img.src = "Img/Rerun.png";
+dogPlayButton_Img.src = "Img/DogPlayButton.png";
 
 function imgIsLoaded(){
 	nbImgLoaded++;
 	if(nbImgLoaded == nbImg){
 		window.setTimeout(function (){
-			game_Loop();
+			loader.innerHTML = '';
+			ctx.drawImage(dogPlayButton_Img, 0, 0);
+			canvas.addEventListener('click', function(evt) {
+			    game_Play();
+			}, false);
 		}, 500);
 	}
 }
@@ -122,6 +136,16 @@ var score = 0;
 
 function randomInt(min, max){
 	return Math.floor(Math.random()*(max-min))+min;
+}
+
+function game_Play(){
+	//Update event listener
+	canvas.addEventListener('click', function(evt) {
+    	game_Event(getMousePos(canvas, evt));
+	}, false);
+
+	// Start game loop
+	game_Loop();
 }
 function game_Loop(){
 	window.setTimeout(function (){
