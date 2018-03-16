@@ -38,7 +38,17 @@ canvas#game{
 	border: 7px solid #eee;
     background-color: #423420;
 }
-
+#help{
+	background-color: #423420;
+	color: #eee;
+	font-size: 25px;
+	position: fixed;
+	top : 0;
+	left: 0;
+	text-align: center;
+	padding: 10px;
+	box-shadow: 0 10px 0 0 #6E5735;
+}
 </style>
 </head>
 <body id="body" style="">
@@ -47,6 +57,7 @@ canvas#game{
 		Canvas n'est pas compatible avec votre navigateur...
 	</canvas>
 	<div id="Loader">Chargement...</div>
+	<div id="help" class="" onclick="toogleHelp(this)">Aide</div>
 	
 <script type="text/javascript">
 
@@ -54,6 +65,20 @@ var canvas = document.getElementById("game");
 var ctx = canvas.getContext("2d");
 var body = document.getElementById('body');
 var loader = document.getElementById('Loader');
+
+
+function toogleHelp(dom_help){
+	dom_help.classList.toggle("help");
+	if(dom_help.classList.contains("help")){
+		dom_help.innerHTML = 
+			"Pour jouer, il faut simplement appuyer sur l'une des quatres "+
+			"touches de couleurs correspondantes a la couleur ecrite en haut a gauche. <br><br>"+
+			"Si le chien s'approche trop du buisson, alors il risque de s'echapper, donc siffles "+
+			"en pressant la touche rouge pour le faire changer de direction !";
+	} else {
+		dom_help.innerHTML = "Aide";
+	}
+}
 
 /* Canvas Onclick position */
 function getMousePos(canvas, evt) {
@@ -88,61 +113,60 @@ goDog_Img.src = 'Img/GameOver_Dog.png';
 rerun_Img.src = "Img/Rerun.png";
 dogPlayButton_Img.src = "Img/DogPlayButton.png";
 
+
+/* Game var */
+var game_Frame, game_Speed, game_Freeze, 
+	background_Frame, background_Speed, 
+	dog_Frame , dog_Speed, dog_Pos, 
+	color_Frame, color_Speed, color_Value, 
+	gameOver_Frame, gameOver_Speed, gameOver_Active, 
+	gameOverError_frame, gameOverError_Speed, gameOverError_Active, gameOverError_Msg, 
+	timerRange_Max, timerRange, timerOk, score;
+
 function imgIsLoaded(){
 	nbImgLoaded++;
 	if(nbImgLoaded == nbImg){
 		window.setTimeout(function (){
 			loader.innerHTML = '';
 			ctx.drawImage(dogPlayButton_Img, 0, 0);
-			canvas.addEventListener('click', function(evt) {
-			    game_Play();
-			}, false);
+			canvas.onclick = (e) => game_Play();
 		}, 500);
 	}
 }
 
 /* Game */
-var game_Frame = 0;
-var game_Speed = 100;
-var game_Freeze = false;
-
-var background_Frame = 0;
-var background_Speed = 25;
-
-var dog_Frame = 0;
-var dog_Speed = 5;
-var dog_Pos = {x:-165, y:0, d:1};
-
-
-var color_Frame = 0;
-var color_Speed = 100;
-var color_Value = 0;
-
-var gameOver_Frame = 0;
-var gameOver_Speed = 5;
-var gameOver_Active = false;
-
-var gameOverError_frame = 0;
-var gameOverError_Speed = 5;
-var gameOverError_Active = false;
-var gameOverError_Msg = "";
-
-
-var timerRange_Max = 200;
-var timerRange = timerRange_Max;
-var timerOk = true;
-
-var score = 0;
-
 function randomInt(min, max){
 	return Math.floor(Math.random()*(max-min))+min;
 }
 
 function game_Play(){
+	// Init var
+	game_Frame = 0;
+	game_Speed = 100;
+	game_Freeze = false;
+	background_Frame = 0;
+	background_Speed = 25;
+	dog_Frame = 0;
+	dog_Speed = 5;
+	dog_Pos = {x:-165, y:0, d:1};
+	color_Frame = 0;
+	color_Speed = 100;
+	color_Value = 0;
+	gameOver_Frame = 0;
+	gameOver_Speed = 7;
+	gameOver_Active = false;
+	gameOverError_frame = 0;
+	gameOverError_Speed = 5;
+	gameOverError_Active = false;
+	gameOverError_Msg = "";
+	timerRange_Max = 200;
+	timerRange = timerRange_Max;
+	timerOk = true;
+	score = 0;
+
+	body.style = ""; 
 	//Update event listener
-	canvas.addEventListener('click', function(evt) {
-    	game_Event(getMousePos(canvas, evt));
-	}, false);
+	canvas.onclick = (e) => game_Event(getMousePos(canvas, e));
 
 	// Start game loop
 	game_Loop();
@@ -179,7 +203,7 @@ function game_Loop(){
 				gameOver_Frame++;
 			} else {
 				gameOverError_Msg = 
-					"Ho non ! Le chien\ns'est echappe\npar un trou\ndans la barriere\nau fond du\njardin !";
+					"Ho non ! Le chien\ns'est echappe\npar un trou\ndans la barriere\nau fond du\njardin !\n\nScore : "+score;
 				game_Over();
 				return;
 			}
@@ -203,7 +227,7 @@ function game_Loop(){
 
 		/* Timer testing */
 		if(timerRange === 0){
-			gameOverError_Msg = "Oups,\ntu as mis trop de \ntemps a repondre !";
+			gameOverError_Msg = "Oups,\ntu as mis trop de \ntemps a\nrepondre !";
 		} else {
 			timerRange--;
 		}
@@ -236,6 +260,7 @@ function game_Loop(){
 
 		/* Increment game frame */
 		game_Frame = (game_Frame+1)%game_Speed;
+
 	}, 10);
 }
 
@@ -269,9 +294,13 @@ function game_Event(mouse){
 	if(modulusValue !== -1){
 		if(Math.floor(color_Value/4) === modulusValue){
 			timerOk = true;
+
+			// Augementatin du score
 			score++;
+			// Acceleration de la vitesse du jeux
+			game_Speed-=5;
 		} else {
-			gameOverError_Msg = "Oups,\nmauvaise couleur !"
+			gameOverError_Msg = "Oups...\nmauvaise\ncouleur !"
 		}
 	}
 }
@@ -288,8 +317,8 @@ function printMsg(x, y, size, msg, color){
 
 function game_Over(){
 	ctx.drawImage(rerun_Img, 0,100);
-	printMsg(25, 200, 32, gameOverError_Msg, "#eee");
-
+	printMsg(40, 180, 32, gameOverError_Msg, "#eee");
+	canvas.onclick = (e) => game_Play();
 }
 
 </script>
