@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<title>Ti Game</title>
 <style type="text/css">
 *{padding:0; margin:0;}
@@ -60,19 +60,22 @@ canvas.addEventListener('click', function(evt) {
 
 
 /* Images loading */
-var nbImgLoaded = 0, nbImg = 3;
+var nbImgLoaded = 0, nbImg = 4;
 
 var background_Img = new Image();
 var dog_Img = new Image();
 var color_Img = new Image();
+var goDog_Img = new Image();
 
 background_Img.onload = () => imgIsLoaded();
 dog_Img.onload = () => imgIsLoaded();
 color_Img.onload = () => imgIsLoaded();
+goDog_Img.onload = () => imgIsLoaded();
 
 background_Img.src = 'Img/Background.png'; // https://qmisslin.github.io/Ti_Game/
 dog_Img.src = 'Img/Dog.png';
 color_Img.src = 'Img/Color.png';
+goDog_Img.src = 'Img/GameOver_Dog.png';
 
 function imgIsLoaded(){
 	nbImgLoaded++;
@@ -84,6 +87,7 @@ function imgIsLoaded(){
 /* Game */
 var game_Frame = 0;
 var game_Speed = 100;
+var game_Freeze = false;
 
 var background_Frame = 0;
 var background_Speed = 25;
@@ -92,9 +96,21 @@ var dog_Frame = 0;
 var dog_Speed = 5;
 var dog_Pos = {x:-165, y:0, d:1};
 
+
 var color_Frame = 0;
 var color_Speed = 100;
 var color_Value = 0;
+
+var gameOver_Frame = 0;
+var gameOver_Speed = 5;
+var gameOver_Active = false;
+
+var gameOverError_frame = 0;
+var gameOverError_Speed = 5;
+var gameOverError_Active = false;
+
+var timerRange = game_Speed;
+var timerRange_Speed = 0; 
 
 function randomInt(min, max){
 	return Math.floor(Math.random()*(max-min))+min;
@@ -106,23 +122,35 @@ function game_Loop(){
 		if(game_Frame%background_Speed === 0){
 			background_Frame=(background_Frame+1)%2;
 		}
-
-		/* Dog animation */
-		if(game_Frame%dog_Speed === 0){
-			dog_Frame = (dog_Frame+1)%8;
-			dog_Pos.x += -(dog_Pos.d*2-1)*15;
-		}
-		if(dog_Pos.x < -160 || dog_Pos.x > 400){
-			
-			dog_Pos.d = (dog_Pos.d === 0)?1:0;
-			if(dog_Pos.d === 0){
-				dog_Pos.x = -160;
-				dog_Pos.y = randomInt(140,445);//140~445
-			} else {
-				dog_Pos.x = 400;
-				dog_Pos.y = randomInt(185,445);//200~445
+		if(!game_Freeze){
+			/* Dog animation */
+			if(game_Frame%dog_Speed === 0){
+				dog_Frame = (dog_Frame+1)%8;
+				dog_Pos.x += -(dog_Pos.d*2-1)*15;
+			}
+			if(dog_Pos.x < -160 || dog_Pos.x > 400){
+				
+				dog_Pos.d = (dog_Pos.d === 0)?1:0;
+				if(dog_Pos.d === 0){
+					dog_Pos.x = -160;
+					dog_Pos.y = randomInt(140,445);//140~445
+				} else {
+					dog_Pos.x = 400;
+					dog_Pos.y = randomInt(185,445);//185~445
+				}
 			}
 		}
+		
+		/* Game over animation */
+		if(gameOver_Active && game_Frame%gameOver_Speed === 0){
+			if(gameOver_Frame < 6){
+				gameOver_Frame++;
+			} else {
+				game_Over();
+				return;
+			}
+		}
+			
 
 
 		/* Color print animation */
@@ -130,21 +158,36 @@ function game_Loop(){
 			color_Value = randomInt(0,16);
 		}
 
-		if(dog_Pos.x > 150 && dog_Pos.y < 185){
-			console.log("game over");
-
-		} else {
-			ctx.drawImage(background_Img, 400 * background_Frame, 0, 400, 640, 0, 0, 400, 640);
-			ctx.drawImage(dog_Img, dog_Pos.d * 160,160 * dog_Frame, 160, 160, dog_Pos.x, dog_Pos.y, 160, 160);
-			ctx.clearRect(15,15,240,55);
-			
-			/* Timer range */
-			ctx.fillStyle="rgb("+(255*game_Frame/100)+","+(255-255*(game_Frame/100))+",20)";
-			ctx.fillRect(15,65,240-(240*game_Frame/100),5);
-			ctx.drawImage(color_Img, 240 * (color_Value%4), 50 * Math.floor(color_Value/4),240,50,15,15,240,50);
-
-			window.requestAnimationFrame(game_Loop);
+		if(!gameOver_Active && dog_Pos.x > 150 && dog_Pos.y < 185){
+			console.log("game over animation start");
+			gameOver_Active = true;
+			gameOver_Frame = 0;
+			game_Freeze = true;
 		}
+
+		if(timerRange === timerRange_Speed){
+			console.log("Timer out !")
+			return;
+		} else {
+			timerRange++;
+		}
+
+		ctx.drawImage(background_Img, 400 * background_Frame, 0, 400, 640, 0, 0, 400, 640);
+		ctx.drawImage(dog_Img, dog_Pos.d * 160,160 * dog_Frame, 160, 160, dog_Pos.x, dog_Pos.y, 160, 160);
+		ctx.clearRect(15,15,240,55);
+		
+		/* Timer range */
+		ctx.fillStyle="rgb("+(255*timerRange/timerRange_Speed)+","+(255-255*(timerRange/timerRange_Speed))+",20)";
+		ctx.fillRect(15,65,240-(240*timerRange/timerRange_Speed),5);
+		ctx.drawImage(color_Img, 240 * (color_Value%4), 50 * Math.floor(color_Value/4),240,50,15,15,240,50);
+
+		/* Game Over Sprite */
+		if(gameOver_Active && gameOver_Frame < 7){
+			ctx.drawImage(goDog_Img, 0, gameOver_Frame*640, 400, 640, 0, 0, 400, 640);
+		}
+
+		window.requestAnimationFrame(game_Loop);
+		
 
 		/* Increment game frame */
 		game_Frame = (game_Frame+1)%game_Speed;
@@ -183,6 +226,10 @@ function game_Event(mouse){
 }
 
 
+
+function game_Over(){
+	
+}
 
 </script>
 </body>
