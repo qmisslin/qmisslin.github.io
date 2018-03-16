@@ -80,7 +80,7 @@ function toogleHelp(dom_help){
 		dom_help.innerHTML = 
 			"Pour jouer, il faut simplement appuyer sur l'une des quatres "+
 			"touches de couleurs correspondantes a la couleur ecrite en haut a gauche. <br><br>"+
-			"Si le chien s'approche trop du buisson, alors il risque de s'echapper, donc siffles "+
+			"Si Vito s'approche trop du buisson, alors il risque de s'echapper, donc siffles "+
 			"en pressant la touche rouge pour le faire changer de direction ! <br><br>"+
 			"Pour Tiphaine de Quentin, jeu fini le 16-03-2018.<br><br>"+
 			"<a href='https://github.com/qmisslin/qmisslin.github.io/tree/master/Ti_Game'>{ Sources }</a>";
@@ -99,7 +99,7 @@ function getMousePos(canvas, evt) {
 }
 
 /* Images loading */
-var nbImgLoaded = 0, nbImg = 6;
+var nbImgLoaded = 0, nbImg = 7;
 
 var background_Img = new Image();
 var dog_Img = new Image();
@@ -107,6 +107,7 @@ var color_Img = new Image();
 var goDog_Img = new Image();
 var rerun_Img = new Image();
 var dogPlayButton_Img = new Image();
+var rerunButton_Img = new Image();
 
 background_Img.onload = () => imgIsLoaded();
 dog_Img.onload = () => imgIsLoaded();
@@ -114,6 +115,7 @@ color_Img.onload = () => imgIsLoaded();
 goDog_Img.onload = () => imgIsLoaded();
 rerun_Img.onload = () => imgIsLoaded();
 dogPlayButton_Img.onload = () => imgIsLoaded();
+rerunButton_Img.onload = () => imgIsLoaded();
 
 background_Img.src = 'Img/Background.png'; // https://qmisslin.github.io/Ti_Game/
 dog_Img.src = 'Img/Dog.png';
@@ -121,6 +123,7 @@ color_Img.src = 'Img/Color.png';
 goDog_Img.src = 'Img/GameOver_Dog.png';
 rerun_Img.src = "Img/Rerun.png";
 dogPlayButton_Img.src = "Img/DogPlayButton.png";
+rerunButton_Img.src = "Img/RerunButton.png";
 
 
 /* Game var */
@@ -212,7 +215,7 @@ function game_Loop(){
 				gameOver_Frame++;
 			} else {
 				gameOverError_Msg = 
-					"Ho non ! Ton\nchien s'est\nechappe par\nun trou\ndans la barriere\nau fond du\njardin !\n\nScore : "+score;
+					"Ho non !\nVito s'est\nechappe par\nun trou\ndans la barriere\nau fond du\njardin !\n\nScore : "+score;
 				game_Over();
 				return;
 			}
@@ -325,8 +328,14 @@ function printMsg(x, y, size, msg, color){
 
 function game_Over(){
 	ctx.drawImage(rerun_Img, 0,100);
+	ctx.drawImage(rerunButton_Img, 200-rerunButton_Img.width/2,420);
 	printMsg(40, 150, 32, gameOverError_Msg, "#eee");
-	canvas.onclick = (e) => game_Play();
+	canvas.onclick = (e) => {
+		var mouse = getMousePos(canvas, e);
+		if(mouse.x > 0.41 && mouse.x < 0.57 && mouse.y > 0.65 && mouse.y<0.75){
+			game_Play();
+		}
+	}
 }
 
 </script>
