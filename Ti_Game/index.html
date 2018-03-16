@@ -27,7 +27,7 @@ canvas{
 	top:50vh; left:50vw;
 	transform: translate(-50%,-50%);
 	color:#eee;
-	font-size: 32px;
+	font-size: 25px;
 }
 canvas#game{
 	position: fixed;
@@ -46,8 +46,8 @@ canvas#game{
 	top : 0;
 	left: 0;
 	text-align: center;
-	padding: 10px 5% 10px 5%;
-	box-shadow: 0 10px 0 0 #6E5735;
+	padding: 5px 5% 5px 5%;
+	box-shadow: 0 0 0 5px #6E5735;
 }
 .help{
 	width: 90%;
@@ -269,7 +269,6 @@ function game_Loop(){
 }
 
 function game_Event(mouse){
-	console.log(mouse);
 	
 	var modulusValue = -1;
 	if(mouse.y > 0.87){
@@ -303,7 +302,6 @@ function game_Event(mouse){
 			score++;
 			// Acceleration de la vitesse du jeux
 			timerRange_Max=Math.max(10,timerRange_Max-10);
-			console.log(timerRange_Max);
 		} else {
 			gameOverError_Msg = "Oups...\nmauvaise\ncouleur !"
 		}
