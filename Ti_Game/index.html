@@ -41,13 +41,16 @@ canvas#game{
 #help{
 	background-color: #423420;
 	color: #eee;
-	font-size: 25px;
+	font-size: 16px;
 	position: fixed;
 	top : 0;
 	left: 0;
 	text-align: center;
 	padding: 10px;
 	box-shadow: 0 10px 0 0 #6E5735;
+}
+.help{
+	width: 100%;
 }
 </style>
 </head>
@@ -74,7 +77,8 @@ function toogleHelp(dom_help){
 			"Pour jouer, il faut simplement appuyer sur l'une des quatres "+
 			"touches de couleurs correspondantes a la couleur ecrite en haut a gauche. <br><br>"+
 			"Si le chien s'approche trop du buisson, alors il risque de s'echapper, donc siffles "+
-			"en pressant la touche rouge pour le faire changer de direction !";
+			"en pressant la touche rouge pour le faire changer de direction ! <br><br>"+
+			"Pour Tiphaine de Quentin, jeu fini le 16-03-2018.";
 	} else {
 		dom_help.innerHTML = "Aide";
 	}
@@ -203,7 +207,7 @@ function game_Loop(){
 				gameOver_Frame++;
 			} else {
 				gameOverError_Msg = 
-					"Ho non ! Le chien\ns'est echappe\npar un trou\ndans la barriere\nau fond du\njardin !\n\nScore : "+score;
+					"Ho non ! Ton\nchien s'est\nechappe par\nun trou\ndans la barriere\nau fond du\njardin !\n\nScore : "+score;
 				game_Over();
 				return;
 			}
@@ -298,7 +302,8 @@ function game_Event(mouse){
 			// Augementatin du score
 			score++;
 			// Acceleration de la vitesse du jeux
-			game_Speed-=5;
+			timerRange_Max=Math.max(10,timerRange_Max-10);
+			console.log(timerRange_Max);
 		} else {
 			gameOverError_Msg = "Oups...\nmauvaise\ncouleur !"
 		}
@@ -317,7 +322,7 @@ function printMsg(x, y, size, msg, color){
 
 function game_Over(){
 	ctx.drawImage(rerun_Img, 0,100);
-	printMsg(40, 180, 32, gameOverError_Msg, "#eee");
+	printMsg(40, 150, 32, gameOverError_Msg, "#eee");
 	canvas.onclick = (e) => game_Play();
 }
 
