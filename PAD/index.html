@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Quentin Misslin">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                background-color: black;
+            }
+            #iframe {
+                width: 100vw;
+                height: 100vh;
+                position: fixed;
+                top:0; left:0;
+                border-style: solid;
+                border-width: 0;
+            }
+        </style>
+    </head>
+    <body onload="setPage()">
+        <iframe id="iframe" src=""></iframe>
+    <script>
+
+    DOM_PAGE = document.getElementById("iframe");
+
+    function setPage() {
+        var url_string = window.location.href
+        var url = new URL(url_string);
+        var page = url.searchParams.get("page");
+
+        DOM_PAGE.src = (page == "video") ? "video.html" : "pad.html";
+    }
+
+    </script>
+    </body>
+</html>

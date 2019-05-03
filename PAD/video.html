@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Quentin Misslin">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+  font-size: 17px;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
+}
+</style>
+</head>
+<body>
+
+<video autoplay muted loop id="myVideo" style = "">
+  <source src="engrenages.mp4" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+
+<script>
+var video = document.getElementById("myVideo");
+var btn = document.getElementById("myBtn");
+var opacity = 0;
+var isPlaying = false;
+var fadeIn = 0;
+
+function render() {
+
+    // Fade in detection
+    if(!isPlaying && localStorage.isPlaying === "true") {
+      fadeIn = 0;
+      video.play();
+    }
+
+    // Fade out
+    if(localStorage.pauseOn === "true") {
+      opacity = Math.min(fadeIn, parseFloat(localStorage.volume));
+      video.play();
+    
+    // Fade in
+    } else if(localStorage.isPlaying === "true") {
+      opacity = Math.min(fadeIn, parseFloat(localStorage.volume));
+      fadeIn = Math.min(1, fadeIn + 0.01);
+      video.play();
+
+    // Hide
+    } else {
+      opacity = 0;
+      video.currentTime = 0;
+      video.pause();
+    }
+
+    video.style.opacity = opacity;
+    isPlaying = (localStorage.isPlaying === "true");
+}
+
+function loop() {
+    render();
+    window.requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Quentin Misslin">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        
+body{
+    background-color: #222222;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button {
+    margin: 10px; padding: 10px;
+    border-radius: 7px;
+    border-style: solid;
+    border-width: 0;
+    background-color: rgba(0,0,0,0.5);
+    color: chocolate;
+
+}
+
+.soundContainer {
+    background-color: black;
+    width: auto;
+    height: auto;
+}
+.audioPlayer {
+    
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    margin: 2px;
+    line-height: 40px;
+}
+
+    .audioPlayer .info {
+        width: 195px;
+        height: 40px;
+        color: black;
+        background-color: rgb(80, 80, 80);
+        padding-right: 5px;
+        text-align: right;
+    }
+    .audioPlayer:nth-child(odd) .info {
+        background-color: rgb(121, 121, 121);
+    }
+    .audioPlayer .progressContainer {
+        width: 400px;
+        height: 40px;
+        background-color: rgba(0,0,0,0.5);
+        position: relative;
+        border-radius: 0 7px 7px 0;
+    }
+
+        .audioPlayer .progressContainer .progressBar{
+            background-color: chocolate;
+            box-shadow: 0 0 10px 1px chocolate;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 0 7px 7px 0;
+        }
+
+
+    .audioPlayer .key {
+        width: 50px;
+        height: 40px;
+        color: chocolate;
+        background-color: rgba(0,0,0,0.5);
+        text-align: center;
+        overflow: hidden;
+        border-radius: 7px 0 0 7px;
+    }
+    .audioPlayer:nth-child(odd) .key {
+        background-color: rgba(0,0,0,0.3);
+    }
+        
+        </style>
+    </head>
+    <body onload="start()" onkeydown="onkeyinput(event)">
+        <h1>La vie de Galilée</h1>
+        <div>Sounds loaded : <span id="soundLoaded">0</span></div>
+        <button class="button" onclick="onkeyinput({key:'Escape'})">Stop all [Escape]</button>
+        <div id="soundContainer"></div>
+<script>
+
+var SOUNDS = [
+    { id:  0, keys: ['Escape', '&', 'a'], pause: {delta: 0.010}, volume: {ref: 0.5}, info: 'Transitions',            name: '00 GALILEE - Transition - CedrikMisslin.mp3' },
+    { id:  1, keys: ['Escape', 'é', 'z'], pause: {delta: 0.010}, volume: {ref: 1.0}, info: 'T01 Galilee Andrea',     name: '01 GALILEE - T01 Galilee Andrea - TheCinematicOrchestra_ArrivalOfTheBirds.mp3' },
+    { id:  2, keys: ['Escape', '\"','e'], pause: {delta: 0.010}, volume: {ref: 0.3}, info: 'T03 La nuit parie I',    name: '02 GALILEE - T03 La nuit parie I - CedrikMisslin.mp3' },
+    { id:  3, keys: ['Escape', '\'','r'], pause: {delta: 0.002}, volume: {ref: 1.0}, info: 'T03 La nuit partie II',  name: '03 GALILEE - T03 La nuit partie II - ZackHemsey_TheWay.mp3' },
+    { id:  4, keys: ['Escape', '(', 't'], pause: {delta: 0.005}, volume: {ref: 1.0}, info: 'T04 La peste partie I',  name: '04 GALILEE - T04 La peste partie I - MrNobody_CeluiQuiN_existePas.mp3' },
+    { id:  5, keys: ['Escape', '-', 'y'], pause: {delta: 0.010}, volume: {ref: 1.0}, info: 'T04 La peste partie II', name: '05 GALILEE - T04 La peste partie II - CedrikMisslin.mp3' },
+    { id:  6, keys: ['Escape', 'è', 'u'], pause: {delta: 0.010}, volume: {ref: 1.0}, info: 'T07 Bal partie I',       name: '06 GALILEE - T07 Bal partie I - PatrickDoyle_NevillesWaltz.mp3' },
+    { id:  7, keys: ['Escape', '_', 'i'], pause: {delta: 0.010}, volume: {ref: 1.0}, info: 'T08 Bal partie II',      name: '07 GALILEE - T08 Bal partie II - JSBach_ConcertoPourQuatreClavecinsLaMineur.mp3' },
+    { id:  8, keys: ['Escape', 'ç', 'o'], pause: {delta: 0.010}, volume: {ref: 1.0}, info: 'T08 Petit moine',        name: '08 GALILEE - T08 Petit moine - HansZimmer_GodYuTekkemLaefBlongMi.mp3' },
+    { id:  9, keys: ['Escape', 'à', 'p'], pause: {delta: 0.005}, volume: {ref: 1.0}, info: 'T13 Rétractation',       name: '09 GALILEE - T13 Rétractation - Britten_SimpleSymphonyThirdMovement.mp3'},
+    { id: 10, keys: ['Escape', 'q', 'w'], pause: {delta: 0.005}, volume: {ref: 1.0}, info: 'Saluts',                 name: '10 GALILEE - Saluts - Queen_BohemianRhapsody.mp3'},
+];
+
+var SOUND_LOADED = 0;
+var dom_SOUND_LOADED = document.getElementById("soundLoaded");
+var dom_SOUND_CONTAINER = document.getElementById("soundContainer");
+
+
+let soundReset = (sound) => {
+    sound.pause.on = false;
+    sound.pause.progress = 1.0;
+    sound.volume.current = sound.volume.ref;
+    sound.audio.currentTime = 0;
+    sound.audio.pause();
+}
+
+let onkeyinput = (event) => {
+    
+    var key = event.key;
+
+    // Play music
+    SOUNDS.forEach(sound => {
+        action = sound.keys.indexOf(key);
+        if( action != -1) {
+            switch(action) {
+
+                // Reset music
+                case 0:
+                case 1: soundReset(sound); break;
+
+                // Play / Pause music
+                case 2: 
+                    if(sound.audio.paused) {
+                        sound.audio.play();
+                    } else {
+                        sound.pause.on = !sound.pause.on;
+                    }
+                break;
+
+                // Up volume
+                case 3: volumeChange(sound, VOLUME_DELTA); break;
+
+                // Down volume
+                case 4: volumeChange(sound, -VOLUME_DELTA); break;
+            }
+        }
+    });
+}
+
+
+
+function start() {
+
+    SOUNDS.forEach(sound => {
+
+        // Loading all audio files
+        sound.audio = document.createElement('audio');
+        sound.audio.addEventListener("canplaythrough", function() {
+
+            if(SOUND_LOADED < SOUNDS.length) {
+                SOUND_LOADED++;
+                dom_SOUND_LOADED.innerHTML = SOUND_LOADED + " / " + SOUNDS.length;
+            }
+            
+        }, false);
+        sound.audio.setAttribute('src', 'sounds/' + sound.name);
+        sound.audio.load();
+        soundReset(sound);
+
+        // Create html elements
+        container = document.createElement("div");
+        container.classList.add("audioPlayer");
+        container.setAttribute("onclick", "onkeyinput({key:'"+ sound.keys[2] +"'})");
+        container.style = "";
+            key = document.createElement("div");
+            key.classList.add("key");
+            key.style = "";
+            key.innerHTML = sound.keys[2];
+            info = document.createElement("div");
+            info.classList.add("info");
+            info.style = "";
+            info.innerHTML = sound.info;
+            progressContainer = document.createElement("div");
+            progressContainer.classList.add("progressContainer");
+            progressContainer.style = "";
+                progressBar = document.createElement("div");
+                progressBar.classList.add("progressBar");
+                progressBar.style = "";
+        
+
+        progressContainer.appendChild(progressBar);
+        container.appendChild(key);
+        container.appendChild(info);
+        container.appendChild(progressContainer);
+        dom_SOUND_CONTAINER.appendChild(container);
+
+        sound.dom = {
+            container: container,
+            progressBar: progressBar,
+            info: info,
+            key: key,
+        };
+    });
+
+    // Loop for displaying
+    window.requestAnimationFrame(loop);
+}
+
+function render() {
+    if(SOUND_LOADED == SOUNDS.length) {
+        SOUNDS.forEach(sound => {
+
+            // Update dom info
+            currentTime = sound.audio.currentTime / sound.audio.duration * 100;
+            sound.dom.progressBar.style.width = currentTime + "%";
+            sound.dom.progressBar.style.height = sound.audio.volume * 100 + "%";
+            sound.dom.progressBar.style.backgroundColor = (sound.audio.paused) ? "red" : "";
+
+            // Compute pause progression
+            if(sound.pause.on) {
+                sound.pause.progress = Math.max(0, sound.pause.progress - sound.pause.delta);
+            } else if(sound.pause.progress < 1) {
+                sound.pause.progress = Math.min(1, sound.pause.progress + sound.pause.delta);
+            }
+
+            // Update local storage for transitions video
+            if(sound.id === 0) {
+                localStorage.isPlaying = !sound.audio.paused;
+                localStorage.pauseOn = sound.pause.on;
+                localStorage.volume = sound.audio.volume / sound.volume.ref;
+            }            
+
+            // Compute volume of audio with pause progress
+            sound.audio.volume = sound.volume.ref * sound.pause.progress;
+            if(sound.pause.on && sound.pause.progress == 0) {
+                soundReset(sound);
+                sound.pause.on = false;
+            }
+        });
+    }
+}
+
+function loop() {
+    render();
+    window.requestAnimationFrame(loop)
+}
+
+
+
+</script>
+    </body>
+</html>
