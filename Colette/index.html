@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ARTUS - Colette</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body onload="Vocal.start()">
+
+        <div class="container">
+            <div class="speak">
+            </div>
+            <div class="wave">
+                <div class="circle" onclick="Vocal.start()" ondblclick="Vocal.restart()">
+                    <div class="inner"></div>
+                </div>
+            </div>  
+        </div>
+        <script src="Page.js"></script>
+        <script src="DataFrench/Words.js"></script>
+        <script src="DataFrench/Names.js"></script>
+        <script src="IA.js"></script>
+        <script src="Vocal.js"></script>
+    </body>
+</html>

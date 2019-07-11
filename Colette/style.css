@@ -1,0 +1,96 @@
+* {
+    width: 100%;
+    height: 100%;
+    padding: 0; margin: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+}
+body * {
+    width: auto;
+    height: auto;
+}
+body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background-color: rgb(37,37,38);
+}
+
+.container {
+    width: 100%; height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
+}
+
+.speak {
+    width: 100%; flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    overflow-y: auto;
+} 
+
+@keyframes message_pop {
+    0% {transform: scale(0); color: transparent;}
+    50% {transform: scale(1); color: transparent;}
+    100% {transform: scale(1);}
+}
+    .speak .msg {
+        padding: 10px;
+        margin: 2px 20px;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,1);
+        max-width: 70%;
+
+        animation-name: message_pop;
+        animation-duration: 0.5s;
+    }
+    .speak .msg:last-child {
+        margin-bottom: 20px !important;
+    }
+    .speak .msg::first-letter {
+        text-transform: uppercase;
+    }
+    .speak .in {
+        align-self: flex-end;
+        border-radius: 20px 20px 0px 20px;
+        background-color: rgb(53, 184, 155);
+        color: white;
+        transform-origin: 100% 100%;
+    }
+    .speak .out {
+        align-self: flex-start;
+        border-radius: 20px 20px 20px 0px;
+        background-color: rgb(255, 255, 255);
+        color: black;
+        transform-origin: 0% 100%;
+    }
+.wave {
+    width: 100%; height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    .wave .circle {
+        width: 50px; height: 50px;
+        border-radius: 100%;
+        box-shadow: 0 0 0 3px white;
+        position: relative;
+    }
+        .wave .circle .inner {
+            position: absolute;
+            background-color: rgb(53, 184, 155);
+            border-radius: 100%;
+        }
