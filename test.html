@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<style>
+		body { background-color: black; }
+		canvas { background-color: white; }
+
+	</style>
+	<body>
+		<canvas></canvas>
+<script>
+
+var c = document.querySelector("canvas");
+var ctx = c.getContext("2d");
+var t = 300;
+var x = 0;
+
+function gBlur(blur, canvas, ctx) {
+	let start = +new Date();
+	
+	let sum = 0;
+	let delta = 5;
+	let alpha_left = 1 / (2 * Math.PI * delta * delta);
+	let step = blur < 3 ? 1 : 2;
+	for (let y = -blur; y <= blur; y += step) {
+		for (let x = -blur; x <= blur; x += step) {
+			let weight = alpha_left * Math.exp(-(x * x + y * y) / (2 * delta * delta));
+			sum += weight;
+		}
+	}
+	let count = 0;
+	for (let y = -blur; y <= blur; y += step) {
+		for (let x = -blur; x <= blur; x += step) {
+			count++;
+			ctx.globalAlpha = alpha_left * Math.exp(-(x * x + y * y) / (2 * delta * delta)) / sum * blur;
+			ctx.drawImage(canvas,x,y);
+		}
+	}
+	ctx.globalAlpha = 1;
+}
+
+
+function draw() {
+	x++;
+	ctx.clearRect(0, 0, c.width, c.height);
+
+	ctx.beginPath();
+	ctx.arc(x, 75, 50, 0, 2 * Math.PI);
+	ctx.fill();
+
+	ctx.beginPath();
+	ctx.arc(c.width - x, 75, 50, 0, 2 * Math.PI);
+	ctx.fill();
+
+	gBlur(5, c, ctx);
+
+	if(t > 0 ) {
+		t--;
+		window.requestAnimationFrame(draw);
+	}
+}
+
+draw();
+
+
+
+
+
+</script>
+	</body>
+</html>
