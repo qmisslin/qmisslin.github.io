@@ -1,0 +1,20 @@
+{
+    "name": "Artus",
+    "short_name": "Artus",
+     "description": "Artus est le théâtre universitaire de Strasbourg.",
+     "start_url": "/?utm_source=pwa_homescreen",
+     "orientation": "portrait",
+     "display": "standalone",
+     "background_color": "#ffffff",
+     "theme_color": "#ffffff",
+     "prompt_message": "Ajoutez un raccourci sur l\u2019\u00e9cran d\u2019accueil pour acc\u00e9der facilement \u00e0 l'app Artus",
+     "icons": [
+         {"src": "/public/images/icon_app_144.png",
+         "sizes": "144x144",
+         "type": "image/png"},
+         {"src": "/public/images/icon_app_144.png",
+         "sizes": "192x192",
+         "type": "image/png"}],
+     "gcm_sender_id": "524223308106",
+     "gcm_user_visible_only": true,
+     "status": "ok"}
