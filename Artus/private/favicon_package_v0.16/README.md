@@ -1,18 +1,15 @@
-<html lang="fr" class="js logged-in client-root touch">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+# Your Favicon Package
 
-    <title>Artus</title>
+This package was generated with [RealFaviconGenerator](https://realfavicongenerator.net/) [v0.16](https://realfavicongenerator.net/change_log#v0.16)
 
-    <meta name="robots" content="noimageindex, noarchive">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#ffffff">
-    <meta id="viewport" name="viewport" 
-    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+## Install instructions
 
-    <!-- Icon -->
+To install this package:
+
+Extract this package in <code>&lt;web site&gt;/./public/images/icon/</code>. If your site is <code>http://www.example.com</code>, you should be able to access a file named <code>http://www.example.com/./public/images/icon/favicon.ico</code>.
+
+Insert the following code in the `head` section of your pages:
+
     <link rel="apple-touch-icon" sizes="180x180" href="./public/images/icon/apple-touch-icon.png?v=qAJ3ypgBvp">
     <link rel="icon" type="image/png" sizes="32x32" href="./public/images/icon/favicon-32x32.png?v=qAJ3ypgBvp">
     <link rel="icon" type="image/png" sizes="192x192" href="./public/images/icon/android-chrome-192x192.png?v=qAJ3ypgBvp">
@@ -26,12 +23,5 @@
     <meta name="msapplication-TileImage" content="./public/images/icon/mstile-144x144.png?v=qAJ3ypgBvp">
     <meta name="msapplication-config" content="./public/images/icon/browserconfig.xml?v=qAJ3ypgBvp">
     <meta name="theme-color" content="#202020">
-    
-    <!-- Style -->
-    <link rel="preload" href="./public/style.css" as="style" type="text/css" crossorigin="anonymous">
-<head>
-<body>
 
-    Hello 1
-    <script type="text/javascript" src="./public/main.js"></script>
-</body></html>
+*Optional* - Check your favicon with the [favicon checker](https://realfavicongenerator.net/favicon_checker)
