@@ -1,8 +1,7 @@
 {
     "name": "Artus",
     "short_name": "Artus",
-    "icons": [
-        {
+    "icons": [{
             "src": "android-chrome-36x36.png?v=qAJ3ypgBvp",
             "sizes": "36x36",
             "type": "image/png"
