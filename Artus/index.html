@@ -29,17 +29,28 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="./public/styles/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./public/styles/simplebar.css" />
     <link rel="stylesheet" href="./public/styles/style.css">
     <link rel="stylesheet" href="./public/styles/message.css">
+
+    <!-- All UI scripts -->
     <script type="text/javascript" src="./public/scripts/include.js"></script>
 </head>
 
 <body>
     <div class="include_container" include="./public/message.html"></div>
+
+    <!-- All actions scripts -->
     <script>
-        include();
+        function onloadPage() {
+            include_html(() => {
+                initSelect();
+            });
+        }
+        window.onload = onloadPage;
     </script>
     <script type="text/javascript" src="./public/scripts/main.js"></script>
+    <script type="text/javascript" src="./public/scripts/select.js"></script>
 </body>
 
 </html>

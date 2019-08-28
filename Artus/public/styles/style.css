@@ -1,3 +1,16 @@
+/* Font */
+
+@font-face {
+    font-family: Audimat;
+    src: url(./Audimat.ttf);
+}
+
+@font-face {
+    font-family: Share;
+    src: url(./Share.ttf);
+}
+
+
 /* Normalize */
 
 * {
@@ -21,9 +34,63 @@ body * {
 body {
     color: white;
     background-color: #202020;
+    font-family: Share, Helvetica, sans-serif;
 }
 
 .include_container {
     width: 100%;
     height: 100%;
+    position: relative;
 }
+
+.include_element {
+    width: 0;
+    height: 0;
+}
+
+
+/* Main menu */
+
+#main_menu {
+    width: 60px;
+    height: 60px;
+    background: url(../images/icon/android-chrome-192x192.png) center;
+    background-size: 100% auto;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    border-radius: 100%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+}
+
+
+/* Select */
+
+.select {
+    width: 100px;
+    height: 30px;
+    background-color: red;
+    position: relative;
+    overflow: hidden;
+}
+
+.opened_select {
+    overflow: visible;
+}
+
+.select .option {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+
+
+/*
+ 
+<div class="select top opened_select">
+    <div class="option" value="input-text"> <i class="fas fa-font"></i></div>
+    <div class="option is_selected" value="input-image"><i class="fas fa-image"></i></div>
+    <div class="option" value="input-file"><i class="fas fa-file"></i></div>
+</div>
+
+*/

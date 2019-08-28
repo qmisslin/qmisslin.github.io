@@ -1,10 +1,35 @@
 <div id="message_container">
     <div id="header">
-        <div id="btn_change_conv"><i class="fas fa-comment-alt"></i></div>
+        <div id="btn_change_conv">
+            <i class="fas fa-comment-alt"></i>
+            <div id="notification">5</div>
+        </div>
         <div id="conv_name">Baptiste</div>
         <div id="option"><i class="fas fa-cog"></i></div>
     </div>
-    <div id="content">
+    <div id="content" data-simplebar data-simplebar-auto-hide="false">
+        <div class="msg_container in">
+            <div class="msg">Hello !</div>
+        </div>
+        <div class="msg_container out">
+            <div class="msg">Hello !</div>
+        </div>
+        <div class="msg_container in">
+            <div class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sapiente quaerat perferendis nulla molestias praesentium qui molestiae itaque voluptatum maxime aut non cumque sunt consequatur, quos sit iste odio? Voluptas!</div>
+        </div>
+        <div class="msg_container in">
+            <div class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sapiente quaerat perferendis nulla molestias praesentium qui molestiae itaque voluptatum maxime aut non cumque sunt consequatur, quos sit iste odio? Voluptas!</div>
+        </div>
+        <div class="msg_container in">
+            <div class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sapiente quaerat perferendis nulla molestias praesentium qui molestiae itaque voluptatum maxime aut non cumque sunt consequatur, quos sit iste odio? Voluptas!</div>
+        </div>
+        <div class="msg_container out">
+            <div class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sapiente quaerat perferendis nulla molestias praesentium qui molestiae itaque voluptatum maxime aut non cumque sunt consequatur, quos sit iste odio? Voluptas!</div>
+        </div>
+        <div class="info">
+            Converstion débutée le 10/10/2019
+        </div>
+
         <div class="msg_container in">
             <div class="msg">Hello !</div>
         </div>
@@ -25,15 +50,22 @@
         </div>
     </div>
     <div id="footer">
-        <div id="btn_menu"></div>
         <div id="msg_input">
+            <div id="btn_msg_type">
+                <div class="select top">
+                    <div class="option" value="input-text"> <i class="fas fa-font"></i></div>
+                    <div class="option" value="input-image"><i class="fas fa-image"></i></div>
+                    <div class="option" value="input-file"><i class="fas fa-file"></i></div>
+                </div>
+            </div>
             <div type="btn_msg_type">
-                <i class="fas fa-font"></i>
-                <i class="fas fa-image"></i>
-                <i class="fas fa-file"></i>
+
             </div>
             <input type="text" placeholder="Votre message...">
             <div type="btn_msg_send"><i class="fas fa-paper-plane"></i></div>
         </div>
     </div>
+
+    <div class="include_element" include="./public/menu.html"></div>
+
 </div>
