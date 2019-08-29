@@ -5,10 +5,6 @@ function include_html(callback) {
     /* Loop through a collection of all HTML elements: */
     z = Array.from(document.querySelectorAll("*[include]"));
     include_manager.final += z.length;
-    console.log("Include html : " +
-        include_manager.current + "/" + include_manager.final);
-    
-    console.log("Include files :", z);
     z.forEach(elmnt => {
         /* Make an HTTP request using the attribute value as the file name: */
         xhttp = new XMLHttpRequest();
