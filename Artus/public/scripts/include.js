@@ -7,6 +7,8 @@ function include_html(callback) {
     include_manager.final += z.length;
     console.log("Include html : " +
         include_manager.current + "/" + include_manager.final);
+    
+    console.log("Include files :", z);
     z.forEach(elmnt => {
         /* Make an HTTP request using the attribute value as the file name: */
         xhttp = new XMLHttpRequest();
@@ -26,7 +28,7 @@ function include_html(callback) {
                 }
             }
         }
-        xhttp.open("GET", file, true);
+        xhttp.open("GET", elmnt.getAttribute("include"), true);
         xhttp.send();
     });
 }
