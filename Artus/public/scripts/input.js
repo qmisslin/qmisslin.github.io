@@ -86,13 +86,14 @@ function replaceAllInputFiles() {
         // Hide old input
         e.classList.add("input_hide");
         let id = e.getAttribute("id");
+        let type = e.getAttribute("file_name");
         e.setAttribute("id", "");
 
         // Create new element
         let container = document.createElement("div");
         container.setAttribute("id", id);
         container.classList.add("input_file_stylized", "input");
-        container.innerText = "Cliquer pour choisir un fichier";
+        container.innerText = "Choisir des " + type;
         e.parentElement.appendChild(container);
 
         // Define event

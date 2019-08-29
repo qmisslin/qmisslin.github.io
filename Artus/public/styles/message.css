@@ -90,16 +90,15 @@
 
 #message_container #footer {
     background-color: rgba(0, 0, 0, 0.4);
-    height: 60px;
+    height: 70px;
 }
 
 #message_container #msg_input {
-    width: 70%;
+    width: 74%;
     margin-left: auto;
     display: flex;
     flex-direction: row;
-    padding: 10px;
-
+    padding: 10px 0 10px 0;
 }
 
 #message_container #msg_input .select {
@@ -121,7 +120,7 @@
 
 #message_container #msg_input #input_text {
     width: 100%;
-    min-height: 40px;
+    min-height: 50px;
     outline-width: 0;
     bottom:0;
     position: absolute;
@@ -149,11 +148,12 @@
     background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
     color: white;
     width: 40px;
-    min-width: 40px;
-    height: 40px;
+    min-width: 50px;
+    height: 50px;
     position: relative;
     overflow:hidden;
     border-radius: 0 15px 15px 0;
+    margin-right: 10px;
 }
 #message_container #btn_msg_send>* {
     top: 50%;
