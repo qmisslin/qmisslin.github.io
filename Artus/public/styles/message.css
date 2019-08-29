@@ -89,7 +89,7 @@
 /* FOOTER */
 
 #message_container #footer {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     height: 60px;
 }
 
@@ -105,21 +105,35 @@
 #message_container #msg_input .select {
     border-radius: 15px 0 0 15px;
 }
-#message_container #msg_input input {
+
+#message_container #input_container {
     flex-grow: 1;
-    padding: 10px;
     background-color: white;
     color: black;
+    min-width:0;
+    position: relative;
+}
+#message_container #msg_input #input {
+    width: 100%;
+    height: 40px;
     outline-width: 0;
+    bottom:0;
+    position: absolute;
+    background-color: white;
+    padding: 5px 10px 0 10px;
+    padding-bottom: 5px;
+    resize: none;
+    border-radius: 15px 15px 0 0;
 }
 #message_container #btn_msg_send {
     background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
     color: white;
     width: 40px;
+    min-width: 40px;
     height: 40px;
     position: relative;
     overflow:hidden;
-    border-radius: 0 15px 15px 0
+    border-radius: 0 15px 15px 0;
 }
 #message_container #btn_msg_send>* {
     top: 50%;

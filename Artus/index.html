@@ -45,9 +45,23 @@
         function onloadPage() {
             include_html(() => {
                 initSelect();
+                initAutosizeTextarea();
             });
         }
         window.onload = onloadPage;
+    </script>
+    <script>
+        function initAutosizeTextarea() {
+            Array.from(document.querySelectorAll('textarea').forEach( e => {
+                e.setAttribute('style', 'height:' + (e.scrollHeight) + 'px;overflow-y:hidden;');
+                e.addEventListener("input", OnInput, false);
+            }));
+        }
+        
+        function OnInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        }
     </script>
     <script type="text/javascript" src="./public/scripts/main.js"></script>
     <script type="text/javascript" src="./public/scripts/select.js"></script>
