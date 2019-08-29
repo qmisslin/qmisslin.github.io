@@ -93,7 +93,7 @@ function replaceAllInputFiles() {
         let container = document.createElement("div");
         container.setAttribute("id", id);
         container.classList.add("input_file_stylized", "input");
-        container.innerText = "Choisir des " + type;
+        container.innerHTML = "Choisir <br>des " + type;
         e.parentElement.appendChild(container);
 
         // Define event
@@ -107,11 +107,12 @@ function replaceAllInputFiles() {
 }
 
 function updateInputFileText(input, dom) {
-    var html = "";
-    var pre = "Envoyer <span class='input_file_stylized_text'>";
-    var suf = "</span>";
+    let html = "";
+    let pre = "Envoyer <span class='input_file_stylized_text'>";
+    let suf = "</span>";
+    let type = e.getAttribute("file_name");
     switch(input.files.length) {
-        case 0: html = "Choisir un fichier"; break;
+        case 0: html = "Choisir <br>des " + type; break;
         case 1: html = pre + input.files.item(0).name + suf; break;
         default: html = pre + input.files.length + suf + " fichiers";
     }
