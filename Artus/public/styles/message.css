@@ -147,6 +147,7 @@
     transform: translateY(-50%);
     right: 5px;
     color: rgba(0,0,0,0.2);
+    z-index: 2;
 }
 #message_container #btn_msg_send {
     background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);

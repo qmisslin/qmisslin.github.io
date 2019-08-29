@@ -149,12 +149,20 @@ body {
 }
 .input_file_stylized {
     width: 100%;
+    max-width: 100%;
     top:50%;
     transform: translateY(-50%);
     position: absolute;
     cursor: pointer;
 }
 .input_file_stylized_text {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right:20px;
+}
+
+.input_file_stylized_span {
     color:#d9626d;
     font-weight: bold;
 }
