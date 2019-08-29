@@ -96,9 +96,34 @@
 #message_container #msg_input {
     width: 70%;
     margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+
 }
 
-#message_container #msg_input {
-    width: 70%;
-    margin-left: auto;
+#message_container #msg_input .select {
+    border-radius: 15px 0 0 15px;
+}
+#message_container #msg_input input {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    outline-width: 0;
+}
+#message_container #btn_msg_send {
+    background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
+    color: white;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow:hidden;
+    border-radius: 0 15px 15px 0
+}
+#message_container #btn_msg_send>* {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
 }

@@ -2,32 +2,30 @@ let select = [];
 
 function SelectInput(s) {
 
-    console.log("Hello Select");
-
     // Dom selection
     this.dom = {
         select: s,
         options: Array.from(s.querySelectorAll(".option"))
     };
-    this.is_open = false;
+    this.is_open = true;
     this.selected = 0;
     this.onchange = () => eval(s.getAttribute("onchange"));
 
     // Event manager
-    this.dom.options.forEach(e, i =>
-        e.addEventListener("click", () => this.select_option(i)));
+    let that = this;
+    this.dom.options.forEach((el, i) =>
+        el.addEventListener("click", function(){ that.select_option(i) }));
 
     // Init first select
-    console.log("da", this);
     this.select_option(0);
 }
 
 SelectInput.prototype.switch = function() {
     this.is_open = !this.is_open;
     if (this.is_open) {
-        this.dom.classList.add("opened_select");
+        this.dom.select.classList.add("opened_select");
     } else {
-        this.dom.classList.remove("opened_select");
+        this.dom.select.classList.remove("opened_select");
     }
 }
 
@@ -54,10 +52,9 @@ function initSelect() {
     console.log("Arr", document.querySelectorAll(".select"));
     arr.forEach(el => {
         console.log("wtf");
-        var s = SelectInput(el);
+        var s = new SelectInput(el);
         select.push(s);
     });
-    console.log("End init Select");
 }
 
 

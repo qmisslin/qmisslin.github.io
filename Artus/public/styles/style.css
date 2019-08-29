@@ -66,10 +66,17 @@ body {
 
 /* Select */
 
+.select,
+.select .option_container .option {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    max-width: 40px;
+}
+
 .select {
-    width: 100px;
-    height: 30px;
-    background-color: red;
     position: relative;
     overflow: hidden;
 }
@@ -78,19 +85,58 @@ body {
     overflow: visible;
 }
 
-.select .option {
+.select .option_container {
     width: 100%;
-    height: 100%;
-    background-color: blue;
+    height: auto;
+    display: flex;
+    position: absolute;
+    background-color: white;
+    color: black;
 }
 
+.select .option_container .option {
+    overflow: hidden;
+    position: relative;
+    order: 1;
+}
 
-/*
- 
-<div class="select top opened_select">
-    <div class="option" value="input-text"> <i class="fas fa-font"></i></div>
-    <div class="option is_selected" value="input-image"><i class="fas fa-image"></i></div>
-    <div class="option" value="input-file"><i class="fas fa-file"></i></div>
-</div>
+.select .option_container .option>* {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-*/
+/* Select direction */
+.select .option_container.up {
+    bottom: 0;
+    height: auto;
+    flex-direction: column;
+}
+.select .option_container.down {
+    top: 0;
+    height: auto;
+    flex-direction: column;
+}
+.select .option_container.left {
+    right: 0;
+    width: auto;
+    flex-direction: row;
+}
+.select .option_container.right {
+    left: 0;
+    width: auto;
+    flex-direction: row;
+}
+.select .option_container.up .is_selected {
+    order: 2 !important;
+}
+.select .option_container.down .is_selected {
+    order: 0 !important;
+}
+.select .option_container.left .is_selected {
+    order: 2 !important;
+}
+.select .option_container.right .is_selected {
+    order: 0 !important;
+}

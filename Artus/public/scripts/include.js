@@ -1,7 +1,9 @@
-var include_manager = { current: 0, final: 0 };
+var include_manager = { current: 0, final: 0, callback: null };
 
 function include_html(callback) {
     var z, i, elmnt, file, xhttp;
+    if(callback != null) 
+        include_manager.callback = callback;
     /* Loop through a collection of all HTML elements: */
     z = Array.from(document.querySelectorAll("*[include]"));
     include_manager.final += z.length;
@@ -20,7 +22,9 @@ function include_html(callback) {
                     console.log("Include html is finish : " +
                         include_manager.current + "/" + include_manager.final);
 
-                    if (callback != null) callback();
+                    if (include_manager.callback != null)
+                        include_manager.callback();
+                    else console.log("No callback.");
                 }
             }
         }
