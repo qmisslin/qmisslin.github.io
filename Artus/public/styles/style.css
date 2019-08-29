@@ -140,3 +140,20 @@ body {
 .select .option_container.right .is_selected {
     order: 0 !important;
 }
+
+
+/* input file */
+.input_hide {
+    display: none !important;
+}
+.input_file_stylized {
+    width: 100%;
+    top:50%;
+    transform: translateY(-50%);
+    position: absolute;
+    cursor: pointer;
+}
+.input_file_stylized_text {
+    color:#d9626d;
+    font-weight: bold;
+}

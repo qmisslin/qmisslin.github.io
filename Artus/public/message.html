@@ -20,6 +20,9 @@
         <div class="msg_container in">
             <div class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sapiente quaerat perferendis nulla molestias praesentium qui molestiae itaque voluptatum maxime aut non cumque sunt consequatur, quos sit iste odio? Voluptas!</div>
         </div>
+        <div class="msg_container out">
+            <div class="msg">Coucou héhé !</div>
+        </div>
         <div class="msg_container in">
             <div class="msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, sapiente quaerat perferendis nulla molestias praesentium qui molestiae itaque voluptatum maxime aut non cumque sunt consequatur, quos sit iste odio? Voluptas!</div>
         </div>
@@ -52,16 +55,26 @@
     <div id="footer">
         <div id="msg_input">
             <div id="btn_msg_type">
-                <div class="select">
+                <div class="select" name="message_type_select">
                     <div class="option_container up">
-                        <div class="option" value="input-text"> <i class="fas fa-font"></i></div>
-                        <div class="option" value="input-image"><i class="fas fa-image"></i></div>
-                        <div class="option" value="input-file"><i class="fas fa-file"></i></div>
+                        <div class="option" value="input_text"> <i class="fas fa-font"></i></div>
+                        <div class="option" value="input_image"><i class="fas fa-image"></i></div>
+                        <div class="option" value="input_file"><i class="fas fa-file"></i></div>
                     </div>
                 </div>
             </div>
             <div id="input_container">
-                <textarea id="input" type="text" placeholder="Votre message..."></textarea>
+
+                <textarea id="input_text" type="text" class="input"
+                placeholder="Votre message..."></textarea>
+                <input id="input_file" multiple accept="image/x-png,image/gif,image/jpeg" 
+                type="file" placeholder="Votre fichier..." class="input">
+                <input id="input_image" multiple class="input" type="file" 
+                placeholder="Votre image...">
+
+                <div id="btn_clear_input">
+                    <i class="fas fa-times"></i>
+                </div>
             </div>
             <div id="btn_msg_send"><i class="fas fa-paper-plane"></i></div>
         </div>

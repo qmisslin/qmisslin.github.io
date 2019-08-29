@@ -113,17 +113,37 @@
     min-width:0;
     position: relative;
 }
-#message_container #msg_input #input {
+
+/* Input type */
+#message_container #msg_input .input {
+    display: none;
+}
+
+#message_container #msg_input #input_text {
     width: 100%;
-    height: 40px;
+    min-height: 40px;
     outline-width: 0;
     bottom:0;
     position: absolute;
     background-color: white;
-    padding: 5px 10px 0 10px;
-    padding-bottom: 5px;
+    padding: 10px 10px 0 10px;
     resize: none;
     border-radius: 15px 15px 0 0;
+}
+#message_container #msg_input .input.active {
+    display: block;
+}
+
+#message_container #msg_input #input::placeholder {
+    line-height: 30px;
+}
+
+#message_container #btn_clear_input {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+    color: rgba(0,0,0,0.2);
 }
 #message_container #btn_msg_send {
     background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);

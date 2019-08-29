@@ -42,30 +42,20 @@
 
     <!-- All actions scripts -->
     <script>
+
+        // Page manager
         function onloadPage() {
             include_html(() => {
-                initSelect();
-                initAutosizeTextarea();
+                initPageMessage();
             });
         }
         window.onload = onloadPage;
     </script>
-    <script>
-        function initAutosizeTextarea() {
-            Array.from(document.querySelectorAll('textarea').forEach( e => {
-                e.setAttribute('style', 'height:' + (e.scrollHeight) + 'px;overflow-y:hidden;');
-                e.addEventListener("input", OnInput, false);
-            }));
-        }
-        
-        function OnInput() {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        }
-    </script>
     <script type="text/javascript" src="./public/scripts/main.js"></script>
-    <script type="text/javascript" src="./public/scripts/select.js"></script>
+    <script type="text/javascript" src="./public/scripts/input.js"></script>
     <script type="text/javascript" src="./public/scripts/simplebar.min.js"></script>
+    
+    <!-- Custom script for each page -->
+    <script type="text/javascript" src="./public/scripts/page_message.js"></script>
 </body>
-
 </html>
