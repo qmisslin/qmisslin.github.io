@@ -56,10 +56,10 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.9);
 }
 .popup {
-    width: 70vw;
+    width: 70%;
     height: auto;
     top: 50%;
     left: 50%;
@@ -88,6 +88,11 @@
     flex-wrap: nowrap;
     justify-content: space-between;
 }
+
+/* Popup stylized elements */
+.popup .header span.colored {
+    color: #e26c63;
+}
 .popup .btn {
     padding: 10px;
     border-radius: 15px;
@@ -97,3 +102,16 @@
 .popup .btn_primary {
     background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
 }
+.popup input[type="text"] {
+    background-color: #202020;
+    color: white;
+    width: 100%;
+    height: 46px;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 20px;
+    line-height: 50px;
+    outline-width: 0;
+    text-align: center;
+}
+

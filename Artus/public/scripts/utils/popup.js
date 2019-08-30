@@ -11,7 +11,7 @@ function Popup(content, button ) {
     let button_list = button.map(b => Element({
             classList: b.classList,
             html: b.caption,
-            event: [{name: 'click', action: b.action}]
+            action: [{name: 'click', action: b.action}]
     }));
 
     this.display = true;
