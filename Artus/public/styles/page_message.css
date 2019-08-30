@@ -54,6 +54,10 @@
 
 /* FOOTER */
 
+#page_message #footer_content {
+    display: flex;
+}
+
 #page_message #footer_content .select {
     border-radius: 15px 0 0 15px;
 }

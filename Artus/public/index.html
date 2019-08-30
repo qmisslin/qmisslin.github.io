@@ -34,16 +34,16 @@
     <link rel="stylesheet" href="./styles/utils/layout.css">
 
     <!-- Custom style for each page -->
-    <link rel="stylesheet" href="./styles/page_message.css">
-    <!-- <link rel="stylesheet" href="./styles/page_message_list.css"> -->
+    <!-- <link rel="stylesheet" href="./styles/page_message.css"> -->
+    <link rel="stylesheet" href="./styles/page_message_list.css">
 
     <!-- All UI scripts -->
     <script type="text/javascript" src="./scripts/utils/include.js"></script>
 </head>
 
 <body>
-    <div id="page_message" class="include_container" include="./page_message.html"></div>
-    <!-- <div id="page_message_list" class="include_container" include="./page_message_list.html"></div> -->
+    <!-- <div id="page_message" class="include_container" include="./page_message.html"></div> -->
+    <div id="page_message_list" class="include_container" include="./page_message_list.html"></div>
 
     <!-- All actions scripts -->
     <script>
@@ -51,8 +51,8 @@
         // Page manager
         function onloadPage() {
             include_html(() => {
-                initPageMessage();
-                // initPageMessageList();
+                // initPageMessage();
+                initPageMessageList();
             });
         }
         window.onload = onloadPage;
@@ -60,9 +60,11 @@
     <script type="text/javascript" src="./scripts/utils/main.js"></script>
     <script type="text/javascript" src="./scripts/utils/input.js"></script>
     <script type="text/javascript" src="./scripts/utils/simplebar.min.js"></script>
+    <script type="text/javascript" src="./scripts/utils/element.js"></script>
+    <script type="text/javascript" src="./scripts/utils/popup.js"></script>
     
     <!-- Custom script for each page -->
-    <script type="text/javascript" src="./scripts/page_message.js"></script>
-    <!-- <script type="text/javascript" src="./scripts/page_message_list.js"></script> -->
+    <!-- <script type="text/javascript" src="./scripts/page_message.js"></script> -->
+    <script type="text/javascript" src="./scripts/page_message_list.js"></script>
 </body>
 </html>
