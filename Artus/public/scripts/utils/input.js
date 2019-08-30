@@ -117,7 +117,7 @@ function updateInputFileText(input, dom) {
     let type = input.getAttribute("file_name");
     switch(input.files.length) {
         case 0: html = "Choisir <br>des " + type; break;
-        case 1: html = pre + input.files.item(0).name + suf + type; break;
+        case 1: html = pre + input.files.item(0).name + suf; break;
         default: html = pre + input.files.length + suf + type;
     }
     dom.innerHTML = html;

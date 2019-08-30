@@ -27,35 +27,10 @@
     <meta name="msapplication-config" content="./public/images/icon/browserconfig.xml?v=qAJ3ypgBvp">
     <meta name="theme-color" content="#202020">
 
-    <!-- Style -->
-    <link rel="stylesheet" href="./public/styles/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="./public/styles/simplebar.css" />
-    <link rel="stylesheet" href="./public/styles/style.css">
-    <link rel="stylesheet" href="./public/styles/message.css">
-
-    <!-- All UI scripts -->
-    <script type="text/javascript" src="./public/scripts/include.js"></script>
+    <!-- Redirection -->
+    <meta http-equiv = "refresh" content = "0; url =./public/index.html" />
 </head>
 
 <body>
-    <div class="include_container" include="./public/message.html"></div>
-
-    <!-- All actions scripts -->
-    <script>
-
-        // Page manager
-        function onloadPage() {
-            include_html(() => {
-                initPageMessage();
-            });
-        }
-        window.onload = onloadPage;
-    </script>
-    <script type="text/javascript" src="./public/scripts/main.js"></script>
-    <script type="text/javascript" src="./public/scripts/input.js"></script>
-    <script type="text/javascript" src="./public/scripts/simplebar.min.js"></script>
-    
-    <!-- Custom script for each page -->
-    <script type="text/javascript" src="./public/scripts/page_message.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@ body {
 #main_menu {
     width: 60px;
     height: 60px;
-    background: url(../images/icon/android-chrome-192x192.png) center;
+    background: url(../../images/icon/android-chrome-192x192.png) center;
     background-size: 100% auto;
     position: absolute;
     bottom: 20px;
@@ -62,6 +62,60 @@ body {
     transform: translateX(-50%);
     border-radius: 100%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+}
+.main_menu_item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transition: 0.2s ease-out;
+    opacity: 0;
+}
+
+.main_menu_item>* {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main_menu_item_0 {
+    color: white;
+    background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
+    box-shadow: none;
+}
+
+.main_menu_item_open .main_menu_item {
+    opacity: 1;
+}
+.main_menu_item_open .main_menu_item_1 {
+    top: -90%;
+    left: 50%;
+}
+.main_menu_item_open .main_menu_item_2 {
+    top: -60%;
+    left: 160%;
+}
+.main_menu_item_open .main_menu_item_3 {
+    top: 50%;
+    left: 190%;
+}
+.main_menu_item_open .main_menu_item_4 {
+    top: -165%;
+    left: 130%;
+}
+.main_menu_item_open .main_menu_item_5 {
+    top: -35%;
+    left: 270%;
 }
 
 

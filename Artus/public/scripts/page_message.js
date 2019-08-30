@@ -41,4 +41,7 @@ function initPageMessage() {
             e.onchange();
         }  
     });
+
+    // Init main menu
+    let menu = new MainMenu();
 }
