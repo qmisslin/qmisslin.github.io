@@ -37,8 +37,8 @@ Conversation.prototype.switch = function() {
 Conversation.prototype.quit = function() {
     let that = this;
     this.popup_quit = new Popup(
-        "Êtes-vous sûr.e de vouloir quitter la conversation"+
-        "<span class=\"colored\"> \"" + this.title + "\" </span>?<br><br>" +
+        "Êtes-vous sûr.e de vouloir quitter la conversation "+
+        "<span class=\"colored\">\"" + this.title + "\"</span>?<br><br>" +
         "Pour revenir à cette conversation, il faudra être invité.e par un.e de ses membres."
         ,[
         {caption: 'Annuler', action: () => that.closePopupQuit(false), classList: 'btn btn_no'},
@@ -48,16 +48,20 @@ Conversation.prototype.quit = function() {
 
 Conversation.prototype.closePopupQuit = function(value) {
     if(value) {
-        // TODO : Quit conversation 
+        
+        this.dom.element.parentElement.removeChild(this.dom.element);
+        delete this;
+        // TODO : Quit conversation on server
     }
-    this.popup_quit.switch();
+    this.popup_quit.delete();
 }
 
 function PageMessageList() {
     
     let that = this;
     this.dom = {
-        add_conv: document.querySelector("#container #option")
+        add_conv: document.querySelector("#container #option"),
+        conv_list: document.querySelector("#content .conv").parentElement,
     }
 
     // Create all conversation element
@@ -75,7 +79,7 @@ PageMessageList.prototype.openPopupNew = function () {
     let that = this;
     this.popup_new = new Popup(
         "Entrez un titre pour la nouvelle conversation que vous voulez créer :"+
-        "<br><br><input type=\"text\" placeolder=\"Entrez un titre\"><br><br>"
+        "<br><br><input id=\"name\" type=\"text\" placeolder=\"Entrez un titre\"><br><br>"
         ,[{
             caption: 'Annuler', 
             action: () => that.closePopupNew(false), 
@@ -90,16 +94,36 @@ PageMessageList.prototype.openPopupNew = function () {
 
 PageMessageList.prototype.closePopupNew = function (value) {
     if(value) {
-        // TODO : Quit conversation 
+        let name = document.querySelector(".popup input#name").value;
+        this.newConv(name);
+        // TODO : New conversation 
     }
-    this.popup_new.switch();
+    this.popup_new.delete();
+}
+
+PageMessageList.prototype.newConv = function (name) {
+    let dom = 
+        Element({classList: 'conv'}, [
+            Element({classList: 'title'}, [
+                Element({classList: 'text', html:name}, []),
+                Element({classList: 'settings'}, [
+                    Element({tag:'i', classList: 'enable fas fa-bell'}, []),
+                    Element({tag:'i', classList: 'disable hide fas fa-bell-slash'}, []),
+                    Element({tag:'i', classList: 'quit fas fa-trash-alt'}, [])
+                ]),
+            ]),
+            Element({classList: 'notification', html:'Pas de nouveaux messages.'}, [])
+        ]);
+    
+    this.dom.conv_list.appendChild(dom);
+    this.conv.push(new Conversation(dom));
 }
 
 function initPageMessageList() {
     initAutosizeTextarea();
     replaceAllInputFiles();
 
-    var pageMessage = new PageMessageList(); 
+    var pageMessageList = new PageMessageList(); 
 
 
     // Init main menu

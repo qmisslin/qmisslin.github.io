@@ -33,6 +33,11 @@ function Popup(content, button ) {
             ])
         ]);
     document.querySelector("#container").appendChild(this.dom);
+    
+    let input = this.dom.querySelector("input");
+    if(this.display && input != null) {
+        input.focus();
+    }
 }
 
 Popup.prototype.switch = function() {
@@ -42,4 +47,7 @@ Popup.prototype.switch = function() {
     } else {
         this.dom.style = 'display: none;';
     }
+}
+Popup.prototype.delete = function() {
+    document.querySelector("#container").removeChild(this.dom);
 }

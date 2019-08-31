@@ -92,6 +92,12 @@
 /* Popup stylized elements */
 .popup .header span.colored {
     color: #e26c63;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    display: block;
+    line-height: 16px;
 }
 .popup .btn {
     padding: 10px;
