@@ -89,6 +89,17 @@
     justify-content: space-between;
 }
 
+.image_popup .popup {
+    width:auto;
+}
+.image_popup .popup .header img{
+    width: auto;
+    height: auto;
+    max-width: 75vw;
+    max-height: 75vh;
+    z-index: 100;
+}
+
 /* Popup stylized elements */
 .popup .header span.colored {
     color: #e26c63;
@@ -107,6 +118,9 @@
 }
 .popup .btn_primary {
     background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
+}
+.popup .btn_solo {
+    margin-left: auto;
 }
 .popup input[type="text"] {
     background-color: #202020;

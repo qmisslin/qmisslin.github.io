@@ -27,3 +27,4 @@ MainMenu.prototype.autoClose = function() {
     }
     this.global_click = true;
 }
+
