@@ -58,11 +58,12 @@ body {
     background-size: 100% auto;
     position: absolute;
     bottom: 20px;
-    left: 13vw;
+    left: 13%;
     transform: translateX(-50%);
     border-radius: 100%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.8);
 }
+
 .main_menu_item {
     position: absolute;
     width: 50px;
@@ -97,22 +98,27 @@ body {
 .main_menu_item_open .main_menu_item {
     opacity: 1;
 }
+
 .main_menu_item_open .main_menu_item_1 {
     top: -90%;
     left: 50%;
 }
+
 .main_menu_item_open .main_menu_item_2 {
     top: -60%;
     left: 160%;
 }
+
 .main_menu_item_open .main_menu_item_3 {
     top: 50%;
     left: 190%;
 }
+
 .main_menu_item_open .main_menu_item_4 {
     top: -165%;
     left: 130%;
 }
+
 .main_menu_item_open .main_menu_item_5 {
     top: -35%;
     left: 270%;
@@ -157,66 +163,78 @@ body {
 
 .select .option_container .option>* {
     position: absolute;
-    top: 50%; 
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+
 /* Select direction */
+
 .select .option_container.up {
     bottom: 0;
     height: auto;
     flex-direction: column;
 }
+
 .select .option_container.down {
     top: 0;
     height: auto;
     flex-direction: column;
 }
+
 .select .option_container.left {
     right: 0;
     width: auto;
     flex-direction: row;
 }
+
 .select .option_container.right {
     left: 0;
     width: auto;
     flex-direction: row;
 }
+
 .select .option_container.up .is_selected {
     order: 2 !important;
 }
+
 .select .option_container.down .is_selected {
     order: 0 !important;
 }
+
 .select .option_container.left .is_selected {
     order: 2 !important;
 }
+
 .select .option_container.right .is_selected {
     order: 0 !important;
 }
 
 
 /* input file */
+
 .input_hide {
     display: none !important;
 }
+
 .input_file_stylized {
     width: 100%;
     max-width: 100%;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
     position: absolute;
     cursor: pointer;
 }
+
 .input_file_stylized_text {
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-right:20px;
+    margin-right: 20px;
 }
 
 .input_file_stylized_span {
-    color:#d9626d;
+    color: #d9626d;
     font-weight: bold;
 }

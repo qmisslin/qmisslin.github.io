@@ -1,3 +1,5 @@
+// ### TODO : REWRITE ALL THIS BULLSH**T CODE
+
 
 // ####################
 // SELECT
@@ -13,6 +15,7 @@ function SelectInput(s) {
         options: Array.from(s.querySelectorAll(".option"))
     };
     this.is_open = true;
+    this.global_click = false;
     this.selected = 0;
     this.onchange = () => eval(s.getAttribute("onchange"));
     this.name = s.getAttribute("name");
@@ -20,14 +23,25 @@ function SelectInput(s) {
 
     // Event manager
     this.dom.options.forEach((el, i) =>
-        el.addEventListener("click", function(){ that.select_option(i) }));
+        el.addEventListener("click", function() { that.select_option(i) }));
+    window.addEventListener("click", function() { that.autoClose(); });
 
     // Init first select
     this.select_option(0);
+
+
+}
+
+SelectInput.prototype.autoClose = function() {
+    if (this.is_open && this.global_click) {
+        this.switch();
+    }
+    this.global_click = true;
 }
 
 SelectInput.prototype.switch = function() {
     this.is_open = !this.is_open;
+    this.global_click = false;
     if (this.is_open) {
         this.dom.select.classList.add("opened_select");
     } else {
@@ -65,15 +79,15 @@ function initSelect() {
 // ####################
 
 function initAutosizeTextarea() {
-    Array.from(document.querySelectorAll('textarea')).forEach( e => {
+    Array.from(document.querySelectorAll('textarea')).forEach(e => {
         e.setAttribute('style', 'height:' + (e.scrollHeight) + 'px;overflow-y:hidden;');
-        e.addEventListener("input", OnInput, false);
+        e.addEventListener("input", function() { TextareaOnInput(e) }, false);
     });
 }
 
-function OnInput() {
-    this.style.height = 'auto';
-    this.style.height = (this.scrollHeight) + 'px';
+function TextareaOnInput(dom) {
+    dom.style.height = 'auto';
+    dom.style.height = (dom.scrollHeight) + 'px';
 }
 
 // ####################
@@ -81,13 +95,14 @@ function OnInput() {
 // ####################
 function replaceAllInputFiles() {
     let inputs = Array.from(document.querySelectorAll("input[type=file]"));
+
     inputs.forEach(e => {
-        
+
         // Hide old input
-        e.classList.add("input_hide");
+        //e.classList.add("input_hide");
         let id = e.getAttribute("id");
         let type = e.getAttribute("file_name");
-        e.setAttribute("id", "");
+        e.setAttribute("id", "hide_" + id);
 
         // Create new element
         let container = document.createElement("div");
@@ -111,14 +126,21 @@ function replaceAllInputFiles() {
 }
 
 function updateInputFileText(input, dom) {
+
     let html = "";
     let pre = "Envoyer <br><span class='input_file_stylized_span'>";
     let suf = "</span> ";
     let type = input.getAttribute("file_name");
-    switch(input.files.length) {
-        case 0: html = "Choisir <br>des " + type; break;
-        case 1: html = pre + input.files.item(0).name + suf; break;
-        default: html = pre + input.files.length + suf + type;
+
+    switch (input.files.length) {
+        case 0:
+            html = "Choisir <br>des " + type;
+            break;
+        case 1:
+            html = pre + input.files.item(0).name + suf;
+            break;
+        default:
+            html = pre + input.files.length + suf + type;
     }
     dom.innerHTML = html;
 }
