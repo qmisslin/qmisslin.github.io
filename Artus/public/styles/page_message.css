@@ -169,6 +169,7 @@
 #page_message #footer_content #input_text {
     width: 100%;
     min-height: 50px;
+    max-height: 90vh;
     outline-width: 0;
     bottom: 0;
     position: absolute;
