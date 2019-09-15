@@ -51,6 +51,7 @@
     width: 74%;
     flex-direction: row;
     margin: 10px 0 10px auto;
+    display: flex;
 }
 
 

@@ -32,10 +32,12 @@
     <link rel="stylesheet" href="./styles/utils/simplebar.css" />
     <link rel="stylesheet" href="./styles/utils/style.css">
     <link rel="stylesheet" href="./styles/utils/layout.css">
+    <link rel="stylesheet" href="./styles/utils/ui.css">
 
     <!-- Custom style for each page -->
-    <link rel="stylesheet" href="./styles/page_message.css">
+    <!-- <link rel="stylesheet" href="./styles/page_message.css"> -->
     <!-- <link rel="stylesheet" href="./styles/page_message_list.css"> -->
+    <link rel="stylesheet" href="./styles/page_message_settings.css">
 
     <!-- All UI scripts -->
     <script type="text/javascript" src="./scripts/utils/include.js"></script>
@@ -43,8 +45,9 @@
 </head>
 
 <body>
-    <div id="page_message" class="include_container" include="./page_message.html"></div>
+    <!-- <div id="page_message" class="include_container" include="./page_message.html"></div> -->
     <!-- <div id="page_message_list" class="include_container" include="./page_message_list.html"></div> -->
+    <div id="page_message" class="include_container" include="./page_message_settings.html"></div>
 
     <!-- All actions scripts -->
     <script>
@@ -53,8 +56,9 @@
         // Page manager
         function onloadPage() {
             include_html(() => {
-                initPageMessage();
+                // initPageMessage();
                 // initPageMessageList();
+                initPageMessageSettings();
             });
         }
         window.onload = onloadPage;
@@ -66,8 +70,9 @@
     <script type="text/javascript" src="./scripts/utils/popup.js"></script>
 
     <!-- Custom script for each page -->
-    <script type="text/javascript" src="./scripts/page_message.js"></script>
+    <!-- <script type="text/javascript" src="./scripts/page_message.js"></script> -->
     <!-- <script type="text/javascript" src="./scripts/page_message_list.js"></script> -->
+    <script type="text/javascript" src="./scripts/page_message_settings.js"></script>
 </body>
 
 </html>
