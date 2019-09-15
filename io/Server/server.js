@@ -15,7 +15,8 @@ function Server () {
 
 // Message format validation
 Server.prototype.msgIsValid = function (msg) {
-    return (msg == null || msg.exp == null);
+    let user = this.state.connected.some(e => e.id == msg.exp);
+    return user && msg != null && msg.exp != null;
 }
 
 // Add client to list
@@ -64,31 +65,31 @@ Server.prototype.start = function () {
         let client = that.add_client();
 
         // Validate connexion
-        socket.emit('server', {
+        socket.emit('server_connexion', {
             title: 'Connexion validation',
             client: client,
         });
     
         // Broadcast message for all connected clients  
         socket.on('message', function (msg) {
-            if(msgIsValid(msg)) {
+            if(that.msgIsValid(msg)) {
 
                 // Send msg for all users
                 socket.broadcast.emit('message', msg);
                 console.log('SERVER - ' + msg.exp + ' : ' + msg);
+
             } else {
 
                 // Send error message
-                socket.emit('message', {
-                    title: 'Error : Message format or id is not correct.',
-                    client: client,
+                socket.emit('server_error', {
+                    title: 'Error : Message format or id is not correct.'
                 });
             }
         });
 
         // Get server information
-        socket.on('get_info', function (msg) {
-            socket.emit('server', {
+        socket.on('get_server_information', function () {
+            socket.emit('server_information', {
                 title: 'Server informations',
                 state: that.getState()
             });
