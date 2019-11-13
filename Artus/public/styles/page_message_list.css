@@ -1,0 +1,55 @@
+#page_message_list .conv {
+    width: auto;
+    height: auto;
+    color: black;
+    margin: 10px 20px 10px 10px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+#page_message_list .conv>* {
+    padding: 10px;
+}
+
+
+/* Conversation header */
+#page_message_list .conv .title {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
+    display: flex;
+    flex-wrap: nowrap;
+}
+#page_message_list .conv .title .text {
+    flex-grow: 1;
+    max-width: 70%;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#page_message_list .conv .title .settings {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+#page_message_list .conv .title .settings .hide {
+    display: none;
+}
+#page_message_list .conv .title .settings .quit {
+    margin-left: 20px;
+}
+
+/* Conversation footer */
+#page_message_list .conv .notification {
+    font-size: 15px;
+    background-color: white;
+}
+#page_message_list .conv .notification span{
+    color: #e26c63;
+}
+
+/* Footer */
+#page_message_list #footer_content {
+    text-align: center;
+    margin-right: 10px;
+}

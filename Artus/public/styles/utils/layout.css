@@ -1,0 +1,152 @@
+#container {
+    width: 900px;
+    height: 100%;
+    max-height: 100%;
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/* HEADER */
+
+#header {
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    font-size: 30px;
+    height: 60px;
+    align-items: baseline;
+    padding: 10px;
+}
+
+#header #title {
+    flex-grow: 1;
+    font-family: Audimat, Helvetica, sans-serif;
+    line-height: 60px;
+}
+
+
+/* CONTENT */
+
+#content {
+    flex-grow: 1;
+    min-height: 0;
+    position: relative;
+}
+
+
+/* FOOTER */
+
+#footer {
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 70px;
+    position: relative;
+}
+
+#footer_content {
+    width: 74%;
+    flex-direction: row;
+    margin: 10px 0 10px auto;
+    display: flex;
+}
+
+
+/* POPUP */
+
+.popup_container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.popup {
+    width: 70%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    font-size: 20px;
+}
+
+.popup .header,
+.popup .footer {
+    width: auto;
+    height: auto;
+    padding: 10px;
+}
+
+.popup .header {
+    color: black;
+    background-color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.popup .footer {
+    background-color: #303030;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.image_popup .popup {
+    width: auto;
+}
+
+.image_popup .popup .header img {
+    width: auto;
+    height: auto;
+    max-width: 75vw;
+    max-height: 75vh;
+    z-index: 100;
+}
+
+
+/* Popup stylized elements */
+
+.popup .header span.colored {
+    color: #e26c63;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    display: block;
+    line-height: 16px;
+}
+
+.popup .btn {
+    padding: 10px;
+    border-radius: 15px;
+    width: 20%;
+    text-align: center;
+}
+
+.popup .btn_primary {
+    background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
+}
+
+.popup .btn_solo {
+    margin-left: auto;
+}
+
+.popup input[type="text"] {
+    background-color: #202020;
+    color: white;
+    width: 100%;
+    height: 46px;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 20px;
+    line-height: 50px;
+    outline-width: 0;
+    text-align: center;
+}

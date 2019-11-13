@@ -1,0 +1,78 @@
+<html lang="fr" class="js logged-in client-root touch">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Artus</title>
+
+    <meta name="robots" content="noimageindex, noarchive">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ffffff">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+    <!-- Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/icon/apple-touch-icon.png?v=qAJ3ypgBvp">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/icon/favicon-32x32.png?v=qAJ3ypgBvp">
+    <link rel="icon" type="image/png" sizes="192x192" href="./images/icon/android-chrome-192x192.png?v=qAJ3ypgBvp">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/icon/favicon-16x16.png?v=qAJ3ypgBvp">
+    <!-- <link rel="manifest" href="./images/icon/site.webmanifest?v=qAJ3ypgBvp"> -->
+    <link rel="mask-icon" href="./images/icon/safari-pinned-tab.svg?v=qAJ3ypgBvp" color="#b800ff">
+    <link rel="shortcut icon" href="./images/icon/favicon.ico?v=qAJ3ypgBvp">
+    <meta name="apple-mobile-web-app-title" content="Artus">
+    <meta name="application-name" content="Artus">
+    <meta name="msapplication-TileColor" content="#202020">
+    <meta name="msapplication-TileImage" content="./images/icon/mstile-144x144.png?v=qAJ3ypgBvp">
+    <meta name="msapplication-config" content="./images/icon/browserconfig.xml?v=qAJ3ypgBvp">
+    <meta name="theme-color" content="#202020">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="./styles/utils/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./styles/utils/simplebar.css" />
+    <link rel="stylesheet" href="./styles/utils/style.css">
+    <link rel="stylesheet" href="./styles/utils/layout.css">
+    <link rel="stylesheet" href="./styles/utils/ui.css">
+
+    <!-- Custom style for each page -->
+    <!-- <link rel="stylesheet" href="./styles/page_message.css"> -->
+    <!-- <link rel="stylesheet" href="./styles/page_message_list.css"> -->
+    <link rel="stylesheet" href="./styles/page_message_settings.css">
+
+    <!-- All UI scripts -->
+    <script type="text/javascript" src="./scripts/utils/include.js"></script>
+    <script type="text/javascript" src="./scripts/utils/client.js"></script>
+</head>
+
+<body>
+    <!-- <div id="page_message" class="include_container" include="./page_message.html"></div> -->
+    <!-- <div id="page_message_list" class="include_container" include="./page_message_list.html"></div> -->
+    <div id="page_message" class="include_container" include="./page_message_settings.html"></div>
+
+    <!-- All actions scripts -->
+    <script>
+        var client = new Client();
+
+        // Page manager
+        function onloadPage() {
+            include_html(() => {
+                // initPageMessage();
+                // initPageMessageList();
+                initPageMessageSettings();
+            });
+        }
+        window.onload = onloadPage;
+    </script>
+    <script type="text/javascript" src="./scripts/utils/main.js"></script>
+    <script type="text/javascript" src="./scripts/utils/input.js"></script>
+    <script type="text/javascript" src="./scripts/utils/simplebar.min.js"></script>
+    <script type="text/javascript" src="./scripts/utils/element.js"></script>
+    <script type="text/javascript" src="./scripts/utils/popup.js"></script>
+
+    <!-- Custom script for each page -->
+    <!-- <script type="text/javascript" src="./scripts/page_message.js"></script> -->
+    <!-- <script type="text/javascript" src="./scripts/page_message_list.js"></script> -->
+    <script type="text/javascript" src="./scripts/page_message_settings.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+/* Select */
+
+.select,
+.select .option_container .option {
+    width: 40px;
+    height: 50px;
+    min-height: 50px;
+    min-width: 40px;
+    max-height: 50px;
+    max-width: 40px;
+}
+
+.select {
+    position: relative;
+    overflow: hidden;
+}
+
+.opened_select {
+    overflow: visible;
+}
+
+.select .option_container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: absolute;
+    background-color: white;
+    color: black;
+}
+
+.select .option_container .option {
+    overflow: hidden;
+    position: relative;
+    order: 1;
+}
+
+.select .option_container .option>* {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Select direction */
+
+.select .option_container.up {
+    bottom: 0;
+    height: auto;
+    flex-direction: column;
+}
+
+.select .option_container.down {
+    top: 0;
+    height: auto;
+    flex-direction: column;
+}
+
+.select .option_container.left {
+    right: 0;
+    width: auto;
+    flex-direction: row;
+}
+
+.select .option_container.right {
+    left: 0;
+    width: auto;
+    flex-direction: row;
+}
+
+.select .option_container.up .is_selected {
+    order: 2 !important;
+}
+
+.select .option_container.down .is_selected {
+    order: 0 !important;
+}
+
+.select .option_container.left .is_selected {
+    order: 2 !important;
+}
+
+.select .option_container.right .is_selected {
+    order: 0 !important;
+}
+
+
+/* input file */
+
+.input_hide {
+    display: none !important;
+}
+
+.input_file_stylized {
+    width: 100%;
+    max-width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    cursor: pointer;
+}
+
+.input_file_stylized_text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 20px;
+}
+
+.input_file_stylized_span {
+    color: #d9626d;
+    font-weight: bold;
+}

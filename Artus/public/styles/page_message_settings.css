@@ -1,0 +1,42 @@
+/* Header */
+#title {
+    margin-left: 10px;
+}
+
+/* Content */
+.select,
+.select .option_container .option {
+    width: 200px;
+    height: 20px;
+    min-height: 20px;
+    min-width: 200px;
+    max-height: 20px;
+    max-width: 200px;
+
+    padding: 10px;
+}
+.select {
+    
+}
+.select .option_container .option {
+    padding: 10px;
+}
+
+/* Footer */
+#footer_content {
+    justify-content: flex-end;
+}
+
+.but {
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 15px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.but.primary {
+    background: linear-gradient(164deg, #fbab50 0%, #e26c63 35%, #a52ba5 100%);
+}
