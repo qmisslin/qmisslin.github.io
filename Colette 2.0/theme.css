@@ -1,0 +1,16 @@
+.speak{
+    background-image: url("bg.jpg");
+    background-size: cover;
+
+}
+
+.msg.in {
+    background-color : rgb(53, 184, 155);
+    color: white;
+    border-radius: 20px 20px 0 20px;
+}
+.msg.out {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 20px 20px 20px 0;
+}

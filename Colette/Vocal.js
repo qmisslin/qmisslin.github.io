@@ -1,5 +1,7 @@
 let Vocal = {
 
+    rec_is_off : true,
+
     initWave : () => {
 
         let doDraw = (analyser, frequencyArray) => {
@@ -63,13 +65,36 @@ let Vocal = {
         };
         rec.onerror = function(event) {
             if(event.isTrusted) return;
-            Page.receiveMessage("Je n'ai pas bien compris");
-            console.log('Error occurred in speach recognition: ' + event.error);
+            Page.receiveMessage("Oups, j'ai eu un petit soucis dans mon processus, mais c'est bon ça va mieux !");
+            console.log('VOCAL - Error occurred in speach recognition: ' + event.error);
             Vocal.initRec();
+        };
+        rec.onnomatch = function(event) {
+            rep = [
+                "Je n'ai pas bien compris...",
+                "Je ne comprends pas bien ce que vous dites...",
+                "Je n'ai pas bien entendu...",
+                "Pouvez vous reformuler s'il vous plaît ? Je n'ai pas bien compris...",
+            ];
+            console.log("VOCAL - No matching recognition.");
+
+            Page.receiveMessage(rep[Math.floor(Math.random()*rep.length)]);
+        };
+        rec.onsoundstart = function(event) {
+            console.log("VOCAL - Service work.");
+            Page.vocalIsPaused(false);
+            Vocal.rec_is_off = false;
+        }
+        rec.onsoundend = function(event) {
+            console.log("VOCAL - Service are paused.");
+            Page.vocalIsPaused(true);
+            Vocal.rec_is_off = true;
+            Vocal.forcingStart();
         }
     },
 
     start : () => {
+        console.log("VOCAL - Try to start service.");
         Vocal.initWave();
         Vocal.initRec();
     },
@@ -77,5 +102,14 @@ let Vocal = {
     restart : () => {
         Page.clear();
         Vocal.start();
-    }
+    },
+
+    forcingStart : () => {        
+        setTimeout(() => {
+            if(Vocal.rec_is_off) {
+                Vocal.start();
+                Vocal.forcingStart();
+            }
+        }, 3000);
+    },
 }

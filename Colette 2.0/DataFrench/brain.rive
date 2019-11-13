@@ -1,0 +1,61 @@
+! version = 2.0
+
+// Si l'utilisateur entre "bonjour", le bot répondra "bonjour".
+// L'entrée doit être entièrement en minuscules sans ponctuation. La sortie est telle qu'elle devra être écrite à l'écran (majuscules, ponctuation).
++ bonjour
+- Bonjour.
+- Salut !
+- Coucou !
+- Hey ! Ca va ?
+
+// Si l'utilisateur entre "Bonjour mon gars", ou "Bonjour cher ami", ou "Bonjour n'importe quoi", le bot devra aussi répondre "bonjour".
+// Même chose pour "Salut mon gars", "Hello cher ami", "Salut à toi".
+// Pour ceci on utilise "(bonjour|hello|salut)" (ce qui signifie n'importe lequel des trois mots) suivi d'un joker facultatif "[*]"
+// Ici, on a mis plusieurs réponses possibles. Une des sorties sera choisie au hasard.
++ (bonjour|hello|salut) [*]
+- Bonjour.
+- Hello.
+- Salut !
+- Salut à toi.
+
+// Le joker peut être réutilisé dans la réponse avec le mot-clé <star> (ou <star1>, c'est pareil)
+// Ici on utilise le joker "_" (un seul mot)
++ je m appelle _
+- <star> ? C'est un joli nom.
+- Je trouve ça joli, <star1>.
+
+// On peut mettre plusieurs jokers dans une entrée
+// Pour les réutiliser dans la sortie, on utilise <star1>, <star2>, ...
++ tu préfères _ ou _
+- Je n'ai pas de préférence entre <star1> et <star2>.
+
+// Le joker "#" signifie un nombre :
++ j'ai # (an|ans)
+- <set age=<star1>>C'est noté, je m'en souviendrai.
+
+// Grâce à la commande "set", l'âge est maintenant mémorisé dans la variable "age". On peut la réutiliser n'importe quand :
++ quel âge j'ai
+- Tu as <get age> ans.
+
+// Le problème est qu'on ne va pas comprendre "J'ai vingt ans.", avec le nombre en toutes lettres.
+// Alors on va faire une liste (array), puis l'utiliser ensuite :
+! array nombres = un deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize vingt trente quarante cinquante soixante septante octante nonante cent
++ j'ai (@nombres) (an|ans)
+- <star1> <star2> ? C'est encore jeune.
+
+// Pour les cas où aucune réponse n'a été trouvée, on laisse à la fin une série de réponses par défaut.
+// L'entrée est juste "*", c'est à dire n'importe quelle entrée non vide. 
++ *
+- Je n'ai pas compris ta réponse.
+- Je ne comprends pas.
+- Sois plus clair.
+- Peux-tu approfondir ta pensée ?
+- Quoi ?
+- Hein ?
+
+// Il faut aussi traiter le cas où l'utilisateur entre une chaîne vide
+// c'est à dire un joker entre crochets "[*]" (les crochets signifient que c'est facultatif)
++ [*]
+- Je ne t'entends pas.
+- Tu ne dis plus rien?
+- Je t'ai cloué le bec, là.

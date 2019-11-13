@@ -21,70 +21,75 @@ body {
 
 .container {
     width: 100%; height: 100%;
-    
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
     max-width: 500px;
     margin: auto;
     box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
 }
 
 .speak {
-    width: 100%; flex-grow: 1;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-end;
+    width: 100%; 
+    height: 90%;
     overflow-y: auto;
+    scroll-behavior: smooth;
 } 
 
-@keyframes message_pop {
-    0% {transform: scale(0); color: transparent;}
-    50% {transform: scale(1); color: transparent;}
-    100% {transform: scale(1);}
-}
+    @keyframes message_pop {
+        0% {transform: scale(0); color: transparent;}
+        50% {transform: scale(1); color: transparent;}
+        100% {transform: scale(1);}
+    }
     .speak .msg {
-        padding: 10px;
         margin: 2px 20px;
-        box-shadow: 0 0 5px 0 rgba(0,0,0,1);
         max-width: 70%;
+        text-align: justify;
 
         animation-name: message_pop;
         animation-duration: 0.5s;
+        clear: both;
+        position: relative;
+    }
+
+    .speak .msg .msg-content {
+        padding: 20px;
     }
     .speak .msg:last-child {
         margin-bottom: 20px !important;
     }
-    .speak .msg::first-letter {
-        text-transform: uppercase;
+    .speak .msg::first-letter, 
+    .speak .msg .localisation::first-letter,
+    .speak .msg .people::first-letter{
+        text-transform: capitalize;
+    }
+    .speak .msg .localisation,
+    .speak .msg .people {
+        font-weight: bold;
+        color: black;
+        text-transform: capitalize;
     }
     .speak .in {
-        align-self: flex-end;
-        border-radius: 20px 20px 0px 20px;
-        background-color: rgb(53, 184, 155);
+        float: right;
         color: white;
         transform-origin: 100% 100%;
     }
     .speak .out {
-        align-self: flex-start;
-        border-radius: 20px 20px 20px 0px;
-        background-color: rgb(255, 255, 255);
-        color: black;
+        float: left;
         transform-origin: 0% 100%;
     }
+    .speak .msg .gif {
+        width: 400px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+    }
 .wave {
-    width: 100%; height: 240px;
+    width: 100%; height: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0,0,0,0.1);
 }
     .wave .circle {
-        width: 50px; height: 50px;
+        width: 5vh; height: 5vh;
         border-radius: 100%;
         box-shadow: 0 0 0 3px white;
         position: relative;
@@ -93,4 +98,8 @@ body {
             position: absolute;
             background-color: rgb(53, 184, 155);
             border-radius: 100%;
+            transition: background-color 0.5s ease;
+        }
+        .wave .circle .vocal_pause {
+            background-color: rgb(99, 53, 184) !important;
         }

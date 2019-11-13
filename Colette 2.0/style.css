@@ -1,0 +1,109 @@
+
+
+
+@font-face {
+    font-family: font;
+    src: url(UI/Elianto.ttf);
+}
+
+* {
+    width: 100%;
+    height: 100%;
+    padding: 0; margin: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+    font-family: font, "Courier New", Courier, monospace;
+    font-size: 12px;
+    font-weight: 0;
+    letter-spacing: 5px;
+}
+body * {
+    width: auto;
+    height: auto;
+}
+body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background-color: black;
+    position: relative;
+}
+
+.container {
+    height: 100vh; width: 100vw;
+    max-width: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.space {
+    width: 100%;
+    height: 50px; min-height: 50px;
+}
+.chat {
+    
+    flex-grow: 1;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+    .chat .msg {
+        max-width: 200px;
+        display: block;
+        clear: both;
+        padding: 10px;
+        position: relative;
+    }
+    .chat .in {
+        float: right;
+        color: rgb(0, 255, 234);
+        text-align: right;
+    }
+    .chat .out {
+        float: left;
+        color: white;
+        text-align: left;
+    }
+
+.circle {
+    width: 300px; height: 300px;
+    min-width: 300px; min-height: 300px;
+    position: relative;
+    transition: filter 2s ease;
+}
+
+.circle video {
+    width: 100%; height: 100%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    box-shadow: 0 0 0 2px rgb(0, 255, 234);
+    transition: 
+        width 0.5s ease-out, 
+        height 0.5s ease-out;
+}
+
+.circle .wave {
+    width: 30px; height: 30px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255,41,72);
+    filter: blur(5px);
+    position: absolute;
+    border-radius: 100%;
+    transition: background-color 2s ease;
+}
+
+.circle.pause {
+    filter: hue-rotate(190deg);
+}
+.circle.pause video {
+    width: 80%; height: 80%;
+}
+.circle.pause .wave {
+    background-color: white;
+}
