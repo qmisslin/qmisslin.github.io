@@ -1,53 +1,56 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>ARTUS - Colette</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="favicon.ico" />
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <!-- onclick="Vocal.start()" ondblclick="Vocal.restart()" -->
-    <body onload="Page.start();">
-        <div class="container">
-            <div class="space"></div>
-            <div class="chat">
-            </div>
-            <div style="display: none;">
-                <!-- <audio controls>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ARTUS - Colette</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- onclick="Vocal.start()" ondblclick="Vocal.restart()" -->
+
+<body onload="Page.start()" onkeydown="Page.startVideo(0)">
+    <div class="container">
+        <div class="space"></div>
+        <div class="chat">
+        </div>
+        <div style="display: none;">
+            <!-- <audio controls>
                     <source src="horse.ogg" type="audio/ogg">
                 </audio> -->
-            </div>
-            <div class="space"></div>
-            <div class="circle">
-                <video onended="Page.startVideo(1)" style = "display:none;">
+        </div>
+        <div class="space"></div>
+        <div class="circle">
+            <video onended="Page.startVideo(1)" style="display:none;">
                     <source src="UI/opening.mp4" type="video/mp4">
                 </video>
-                <video loop  style = "display:none;">
+            <video loop style="display:none;">
                     <source src="UI/loop.mp4" type="video/mp4">
                 </video>
-                <div class="wave"></div>
-            </div>
-            <div class="space"></div>
+            <div class="wave"></div>
         </div>
+        <div class="space"></div>
+    </div>
 
-        <!-- Lib -->
-        <script src="jquery.min.js"></script>
-        <script src="rivescript.min.js"></script>
+    <!-- Lib -->
+    <script src="jquery.min.js"></script>
+    <script src="rivescript.min.js"></script>
 
-        <!-- Data -->
-        <script src="DataFrench/FrenchCities.js"></script>
-        <script src="DataFrench/FrenchDepartments.js"></script>
-        <script src="DataFrench/Names.js"></script>
-        <script src="DataFrench/Words.js"></script>
-        <script src="DataFrench/WorldCities.js"></script>
-        
+    <!-- Data -->
+    <script src="DataFrench/FrenchCities.js"></script>
+    <script src="DataFrench/FrenchDepartments.js"></script>
+    <script src="DataFrench/Names.js"></script>
+    <script src="DataFrench/Words.js"></script>
+    <script src="DataFrench/WorldCities.js"></script>
 
-        <!-- App -->
-        <script src="Mapper.js"></script>
-        <script src="IA.js"></script>
-        <script src="Page.js"></script>
-        <script src="Vocal.js"></script>
-    </body>
+
+    <!-- App -->
+    <script src="Mapper.js"></script>
+    <script src="IA.js"></script>
+    <script src="Page.js"></script>
+    <script src="Vocal.js"></script>
+</body>
+
 </html>
