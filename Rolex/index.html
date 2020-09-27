@@ -4,25 +4,31 @@
     <link rel="stylesheet" href="layout.css">
   </head>
   <body>
-    <video
-      id="Candidature-Misslin-Quentin"
-      class="video-js"
-      controls
-      preload="auto"
-      width="960"
-      height="540"
-      poster="Vignette.jpg"
-      data-setup="{}"
-    >
-      <source src="ROLEX - Candidature Quentin Misslin.mp4" type="video/mp4" />
-      <source src="MY_VIDEO.webm" type="video/webm" />
-      <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a
-        web browser that
-        <a href="https://videojs.com/html5-video-support/" target="_blank"
-          >supports HTML5 video</a
+    <div id="video-container">
+        <video
+            id="Candidature-Misslin-Quentin"
+            class="video-js"
+            controls
+            preload="auto"
+            width="960"
+            height="540"
+            poster="Vignette.jpg"
+            data-setup="{}"
         >
-      </p>
-    </video>
+        <source src="ROLEX - Candidature Quentin Misslin.mp4" type="video/mp4" />
+        <source src="ROLEX - Candidature Quentin Misslin.webm" type="video/webm" />
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank"
+            >supports HTML5 video</a
+            >
+        </p>
+        </video>
+    </div>
+    <div id="link">
+        Il est aussi possible de visionner cette vidéo sur YouTube : 
+        <a href="https://youtu.be/4OZSpAXriLk">https://youtu.be/4OZSpAXriLk</a>
+    </div>
     <script src="video.js"></script>
   </body>

@@ -1,11 +1,27 @@
 body {
     background-color: #060621;
+}
+#video-container {
     position: relative;
 }
-
-body>div {
+#video-container>div {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
+}
+video {
+    width: 960px;
+    height: 540px;
+}
+
+#link {
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #07073f;
+}
+#link a {
+    color: rgb(0, 166, 255);
 }
