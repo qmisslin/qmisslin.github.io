@@ -1,0 +1,169 @@
+
+
+@font-face {
+    font-family: font;
+    src: url('./assets/BerkshireSwash-Regular.ttf');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+
+* {
+    font-family: font;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.card>div {
+    margin: 30px;
+}
+
+.title {
+    font-size: 35px;
+    
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 15px;
+    overflow-wrap: break-word; 
+}
+
+.background {
+    position: absolute;
+    height: 100%;
+    width: 200%;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+}
+
+.content {
+    position: absolute;
+    top: 46%;
+    text-align: center;
+}
+
+.content-title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.content br {
+    margin-bottom: 20px;
+}
+.card-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+    color: #909090;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+/* Manager */
+.app {
+    background-color: #252525;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+.card-list {
+    width: 200Px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    flex-grow: 1;
+    max-width: 300px;
+}
+
+.card-list .card-item {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    min-height: 40px;
+}
+
+.card-list .card-item>div {
+    padding: 10px;
+}
+
+.card-list .card-item>div:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.card-list .item-title {
+    flex-grow: 1;
+    text-overflow: ellipsis ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Editor */
+.editor {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    overflow-y: auto;
+    max-width: 300px;
+}
+.editor .field {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.field label {
+    margin-bottom: 10px;
+    color: white;
+}
+
+input[type=text], textarea, button {
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 0px;
+    padding: 10px;
+    display: block;
+    background-color: #cccccc;
+    cursor: pointer;
+}
+
+textarea {
+    align-self: stretch;
+    flex-grow: 1;
+    resize: none;
+    min-height: 50px;
+}
+
+.color-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color-list button {
+    background-color: black;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}

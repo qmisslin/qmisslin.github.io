@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card maker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app">
+        <div class="card-list"></div>
+        <div class="card-container"><p>Select a card in side bar.</p></div>
+        <div class="editor">
+            <div class="field">
+                <label>Title</label>
+                <input type="text" id="input-title">
+            </div>
+            <div class="field">
+                <label>Color</label>
+                <div class="color-list">
+                    <button color="#b63022"></button>
+                    <button color="#3db622"></button>
+                    <button color="#22afb6"></button>
+                    <button color="#b6b122"></button>
+                    <button color="#b622aa"></button>
+                    <button color="#7622b6"></button>
+                    <button color="#2c22b6"></button>
+                </div>
+            </div>
+            <div class="field">
+                <label>Content title</label>
+                <input type="text" id="input-content-title">
+            </div>
+            <div class="field" style="flex-grow: 1;">
+                <label>Content text</label>
+                <textarea type="text" id="input-content-text"></textarea>
+            </div>
+            <div class="field">
+                <button id="download">Download card</button>
+            </div>
+            <div class="field">
+                <button id="save">Save backup</button>
+            </div>
+            <div class="field">
+                <button onclick="document.querySelector('#load').click()">Load backup</button>
+                <input id="load" type="file" hidden />
+            </div>
+        </div>
+    </div>
+    
+    <script src="dom-to-image.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
